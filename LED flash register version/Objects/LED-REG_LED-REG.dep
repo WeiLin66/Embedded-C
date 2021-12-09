@@ -1,0 +1,16 @@
+Dependencies for Project 'LED-REG', Target 'LED-REG': (DO NOT MODIFY !)
+CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCC
+F (.\main.c)(0x61B211C0)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I "..\LED flash register version" -I .\GPIO-IC:\Keil_v5\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="534" -DSTM32F429xx-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+I (.\GPIO\stm_gpio.h)(0x61B212C5)
+I (..\LED flash register version\stm32f4xx.h)(0x61B21113)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5E8E3CC2)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5E8E3CC2)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5E8E3CC2)
+F (.\startup_stm32f429_439xx.s)(0x61A4CFB9)(--cpu Cortex-M4.fp.sp -g --apcs=interwork --pd "__MICROLIB SETA 1"-IC:\Keil_v5\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include--pd "__UVISION_VERSION SETA 534" --pd "STM32F429xx SETA 1"--list .\listings\startup_stm32f429_439xx.lst --xref -o .\objects\startup_stm32f429_439xx.o --depend .\objects\startup_stm32f429_439xx.d)
+F (.\stm32f4xx.h)(0x61B21113)()
+F (.\GPIO\stm_gpio.c)(0x61B2107C)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I "..\LED flash register version" -I .\GPIO-IC:\Keil_v5\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="534" -DSTM32F429xx-o .\objects\stm_gpio.o --omf_browse .\objects\stm_gpio.crf --depend .\objects\stm_gpio.d)
+I (GPIO\stm_gpio.h)(0x61B212C5)
+I (..\LED flash register version\stm32f4xx.h)(0x61B21113)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5E8E3CC2)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5E8E3CC2)
+F (.\GPIO\stm_gpio.h)(0x61B212C5)()

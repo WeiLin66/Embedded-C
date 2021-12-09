@@ -1,0 +1,8 @@
+--cpu=Cortex-M4.fp.sp
+".\objects\main.o"
+".\objects\startup_stm32f429_439xx.o"
+".\objects\stm_gpio.o"
+--library_type=microlib --strict --scatter ".\Objects\LED-REG.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\LED-REG.map" -o .\Objects\LED-REG.axf
