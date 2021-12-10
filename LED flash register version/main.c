@@ -1,6 +1,5 @@
+#include "stm32f4xx.h"
 #include "stm_gpio.h"
-#include "stdio.h"
-
 
 /**
   *   main

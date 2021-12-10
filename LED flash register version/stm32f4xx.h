@@ -1,3 +1,7 @@
+#ifndef __STM32F4XX_H
+#define __STM32F4XX_H
+
+#include <stdio.h>
 #include <stdint.h>
 
 //#define GPIO_register 1
@@ -28,3 +32,4 @@ typedef struct{
 }GPIO_TYPEDEF;
 
 typedef GPIO_TYPEDEF* GPIO_Typedef; //GPIO pointer
+#endif

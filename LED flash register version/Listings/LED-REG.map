@@ -249,29 +249,29 @@ Memory Map of the image
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x08000000   0x08000000   0x000001ac   Data   RO           33    RESET               startup_stm32f429_439xx.o
-    0x080001ac   0x080001ac   0x00000000   Code   RO           78  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x080001ac   0x080001ac   0x00000004   Code   RO           81    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x080001b0   0x080001b0   0x00000004   Code   RO           84    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x080001b4   0x080001b4   0x00000000   Code   RO           86    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x080001b4   0x080001b4   0x00000000   Code   RO           88    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x080001b4   0x080001b4   0x00000008   Code   RO           89    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x080001bc   0x080001bc   0x00000004   Code   RO           96    .ARM.Collect$$$$0000000E  mc_w.l(entry12b.o)
-    0x080001c0   0x080001c0   0x00000000   Code   RO           91    .ARM.Collect$$$$0000000F  mc_w.l(entry10a.o)
-    0x080001c0   0x080001c0   0x00000000   Code   RO           93    .ARM.Collect$$$$00000011  mc_w.l(entry11a.o)
-    0x080001c0   0x080001c0   0x00000004   Code   RO           82    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x080001ac   0x080001ac   0x00000000   Code   RO           81  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x080001ac   0x080001ac   0x00000004   Code   RO           84    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x080001b0   0x080001b0   0x00000004   Code   RO           87    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x080001b4   0x080001b4   0x00000000   Code   RO           89    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x080001b4   0x080001b4   0x00000000   Code   RO           91    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x080001b4   0x080001b4   0x00000008   Code   RO           92    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x080001bc   0x080001bc   0x00000004   Code   RO           99    .ARM.Collect$$$$0000000E  mc_w.l(entry12b.o)
+    0x080001c0   0x080001c0   0x00000000   Code   RO           94    .ARM.Collect$$$$0000000F  mc_w.l(entry10a.o)
+    0x080001c0   0x080001c0   0x00000000   Code   RO           96    .ARM.Collect$$$$00000011  mc_w.l(entry11a.o)
+    0x080001c0   0x080001c0   0x00000004   Code   RO           85    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
     0x080001c4   0x080001c4   0x0000001c   Code   RO           34    .text               startup_stm32f429_439xx.o
-    0x080001e0   0x080001e0   0x00000024   Code   RO           97    .text               mc_w.l(init.o)
+    0x080001e0   0x080001e0   0x00000024   Code   RO          100    .text               mc_w.l(init.o)
     0x08000204   0x08000204   0x00000032   Code   RO           39    i.GPIO_Config       stm_gpio.o
     0x08000236   0x08000236   0x00000002   PAD
     0x08000238   0x08000238   0x00000020   Code   RO           40    i.GPIO_Init         stm_gpio.o
     0x08000258   0x08000258   0x00000026   Code   RO           41    i.GPIO_LED_Control  stm_gpio.o
     0x0800027e   0x0800027e   0x00000016   Code   RO           42    i.GPIO_RESET        stm_gpio.o
     0x08000294   0x08000294   0x00000016   Code   RO           43    i.GPIO_SET          stm_gpio.o
-    0x080002aa   0x080002aa   0x0000000e   Code   RO          101    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x080002b8   0x080002b8   0x00000002   Code   RO          102    i.__scatterload_null  mc_w.l(handlers.o)
-    0x080002ba   0x080002ba   0x0000000e   Code   RO          103    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x080002aa   0x080002aa   0x0000000e   Code   RO          104    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x080002b8   0x080002b8   0x00000002   Code   RO          105    i.__scatterload_null  mc_w.l(handlers.o)
+    0x080002ba   0x080002ba   0x0000000e   Code   RO          106    i.__scatterload_zeroinit  mc_w.l(handlers.o)
     0x080002c8   0x080002c8   0x00000030   Code   RO            1    i.main              main.o
-    0x080002f8   0x080002f8   0x00000010   Data   RO           99    Region$$Table       anon$$obj.o
+    0x080002f8   0x080002f8   0x00000010   Data   RO          102    Region$$Table       anon$$obj.o
 
 
     Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08000308, Size: 0x00000400, Max: 0x00030000, ABSOLUTE)
@@ -288,12 +288,12 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-        48          4          0          0          0       5723   main.o
+        48          4          0          0          0       5699   main.o
         28          4        428          0       1024        836   startup_stm32f429_439xx.o
-       164          6          0          0          0       2657   stm_gpio.o
+       164          6          0          0          0       3429   stm_gpio.o
 
     ----------------------------------------------------------------------
-       242         14        444          0       1024       9216   Object Totals
+       242         14        444          0       1024       9964   Object Totals
          0          0         16          0          0          0   (incl. Generated)
          2          0          0          0          0          0   (incl. Padding)
 
@@ -333,8 +333,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-       332         30        444          0       1024       9088   Grand Totals
-       332         30        444          0       1024       9088   ELF Image Totals
+       332         30        444          0       1024       9836   Grand Totals
+       332         30        444          0       1024       9836   ELF Image Totals
        332         30        444          0          0          0   ROM Totals
 
 ==============================================================================

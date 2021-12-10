@@ -1,9 +1,7 @@
-#ifndef __STM32FXX__H
-#define __STM32FXX__H
+#ifndef __STM_GPIO__H
+#define __STM_GPIO__H
 
 #include "stm32f4xx.h"
-
-#endif
 #include <stdbool.h>
 
 typedef enum{
@@ -19,3 +17,4 @@ typedef enum{
 
 extern void GPIO_Init(GPIO_Typedef, uint8_t);
 extern void GPIO_LED_Control(GPIO_Typedef, uint8_t, bool);
+#endif
