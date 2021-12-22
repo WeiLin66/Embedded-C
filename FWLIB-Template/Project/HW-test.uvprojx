@@ -690,7 +690,7 @@
                   <RVCTZI>0</RVCTZI>
                   <RVCTOtherData>0</RVCTOtherData>
                   <ModuleSelection>0</ModuleSelection>
-                  <IncludeInBuild>0</IncludeInBuild>
+                  <IncludeInBuild>1</IncludeInBuild>
                   <AlwaysBuild>2</AlwaysBuild>
                   <GenerateAssemblyFile>2</GenerateAssemblyFile>
                   <AssembleAssemblyFile>2</AssembleAssemblyFile>
@@ -739,6 +739,13 @@
         </Group>
         <Group>
           <GroupName>Doc</GroupName>
+          <Files>
+            <File>
+              <FileName>stm32f4xx_dsp_stdperiph_lib_um.chm</FileName>
+              <FileType>9</FileType>
+              <FilePath>..\Doc\stm32f4xx_dsp_stdperiph_lib_um.chm</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>
