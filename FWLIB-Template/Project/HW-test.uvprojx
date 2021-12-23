@@ -10,6 +10,7 @@
       <TargetName>Target 1</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pArmCC>5060960::V5.06 update 7 (build 960)::.\ARMCC</pArmCC>
       <pCCUsed>5060960::V5.06 update 7 (build 960)::.\ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
@@ -739,13 +740,6 @@
         </Group>
         <Group>
           <GroupName>Doc</GroupName>
-          <Files>
-            <File>
-              <FileName>stm32f4xx_dsp_stdperiph_lib_um.chm</FileName>
-              <FileType>9</FileType>
-              <FilePath>..\Doc\stm32f4xx_dsp_stdperiph_lib_um.chm</FilePath>
-            </File>
-          </Files>
         </Group>
       </Groups>
     </Target>
@@ -756,5 +750,14 @@
     <components/>
     <files/>
   </RTE>
+
+  <LayerInfo>
+    <Layers>
+      <Layer>
+        <LayName>HW-test</LayName>
+        <LayPrjMark>1</LayPrjMark>
+      </Layer>
+    </Layers>
+  </LayerInfo>
 
 </Project>

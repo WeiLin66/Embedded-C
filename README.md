@@ -1,2 +1,2 @@
 ### embedded c code
-- STM32F429
+- STM32F429 practices
