@@ -1,15 +1,17 @@
 #include "bsp_led.h"
 
 
-void GPIO_Initial_api(void){
-    /*still not done yet...*/
+void GPIO_Initial_API(void){
     GPIO_InitTypeDef GPIO_Initial_pars;
     
-//    GPIO_Initial_pars.GPIO_Pin = 0;
-//    GPIO_Initial_pars.GPIO_Mode = 0;
-//    GPIO_Initial_pars.GPIO_OType = 0;
-//    GPIO_Initial_pars.GPIO_PuPd = 0;
-//    GPIO_Initial_pars.GPIO_Speed = 0;
+		/*Enable peripheral cloack*/
+		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOH, ENABLE);
+	
+    GPIO_Initial_pars.GPIO_Pin = LED_Red_PIN;
+    GPIO_Initial_pars.GPIO_Mode = GPIO_Mode_OUT;
+    GPIO_Initial_pars.GPIO_OType = GPIO_OType_PP;
+    GPIO_Initial_pars.GPIO_PuPd = GPIO_PuPd_DOWN;
+    GPIO_Initial_pars.GPIO_Speed = GPIO_Fast_Speed;
     
     GPIO_Init(GPIOH, &GPIO_Initial_pars);
 }
