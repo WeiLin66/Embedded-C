@@ -11,3 +11,8 @@
     2. 按下按鍵後toogle LED燈
     3. PA0 → 紅
     4. PC13 → 綠
+
+### 按鍵觸發LED(帶位操作版本)
+    1. 將初始化操作改成bit-banding
+    2. 將toggle函式改為bit-banding 
+    3. 新增位帶區段地址相關macro
