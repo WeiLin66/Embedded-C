@@ -38,3 +38,4 @@
 ..\output\main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h
 ..\output\main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_ltdc.h
 ..\output\main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
+..\output\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\time.h

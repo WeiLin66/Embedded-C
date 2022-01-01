@@ -7,15 +7,12 @@
  */
 int main(void)
 {  
-	/*Initialize GPIOH Pin 10*/
-	GPIO_Initial_API();
-	
-	/*Output operation*/
-	GPIO_ResetBits(LED_Red_PORT, LED_Red_RCC);
-//	GPIO_SetBits(GPIOH, RCC_AHB1Periph_GPIOH);
+	/*Initialize LEDs*/
+	App_Init();
 	
   /* Infinite loop */
   while (1)
   {
+			App_Thread();
   }
 }
