@@ -2,7 +2,14 @@
 
 uint32_t static mutipliter;
 
+void assert_failed(uint8_t* file, uint32_t line){
+    printf("file: %s\nline: %d\n", file, line);
+}
+
 void GPIO_Initial_API(GPIO_TypeDef* GPIO, uint16_t PIN){
+		assert_param(GPIO);
+		assert_param(PIN);
+	
     GPIO_InitTypeDef GPIO_Initial_pars;
     	
     GPIO_Initial_pars.GPIO_Pin = PIN;
@@ -40,6 +47,10 @@ void App_Init(void){
 }
 
 void LED_Flash(GPIO_TypeDef* GPIO, uint16_t PIN, uint16_t delay_time){
+		assert_param(GPIO);
+		assert_param(PIN);
+		assert_param(delay_time);
+	
 		GPIO_ResetBits(GPIO, PIN);
 		DelayMs(delay_time);
 		GPIO_SetBits(GPIO, PIN);

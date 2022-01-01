@@ -2,6 +2,7 @@
 #define __BSP_LED_H
 #include "stm32f4xx.h"
 #include "stm32f4xx_gpio.h"
+#include <stdio.h>
 #include "time.h"
 
 /*Increase portability of bsp_led*/
