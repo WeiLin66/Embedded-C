@@ -16,3 +16,6 @@
     1. 將初始化操作改成bit-banding
     2. 將toggle函式改為bit-banding 
     3. 新增位帶區段地址相關macro
+
+### RCC
+    1. RCC的基本系統時間配置程式碼範例說明
