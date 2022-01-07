@@ -1,7 +1,9 @@
 ..\output\main.o: ..\User\main.c
+..\output\main.o: ..\User\bsp_rccclkconfig.h
+..\output\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\output\main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h
 ..\output\main.o: ..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 ..\output\main.o: ..\Libraries\CMSIS\Include\core_cm4.h
-..\output\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\output\main.o: ..\Libraries\CMSIS\Include\core_cmInstr.h
 ..\output\main.o: ..\Libraries\CMSIS\Include\core_cmFunc.h
 ..\output\main.o: ..\Libraries\CMSIS\Include\core_cmSimd.h
@@ -26,7 +28,7 @@
 ..\output\main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h
 ..\output\main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h
 ..\output\main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h
-..\output\main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h
+..\output\main.o: ..\User\misc.h
 ..\output\main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_cryp.h
 ..\output\main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_hash.h
 ..\output\main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rng.h
@@ -37,3 +39,4 @@
 ..\output\main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h
 ..\output\main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_ltdc.h
 ..\output\main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
+..\output\main.o: ..\User\bsp_led.h

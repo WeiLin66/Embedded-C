@@ -88,3 +88,32 @@ static void SetSysClock(void)
 }
 
 #endif /*RCC_TEST*/
+
+
+/**
+ * vco range: 192~432Mhz
+ * Re-set system clock by myself, the maximun frequency is 216Mhz
+ * @param m Division factor
+ * @param n Multiplication factor
+ * @param p Division factor for main system clock
+ * @param q Division factor for USB OTG FS, SDIO, etc.
+ * @retval None
+ */
+void HSE_SetSysCLK(uint32_t m, uint32_t n, uint32_t p, uint32_t q){
+		RCC_DeInit(); // RCC reset to default
+		RCC_HSEConfig(SET_ON);
+	
+		while(!RCC_WaitForHSEStartUp()){
+			My_Delay(TIMES);
+			RCC_HSEConfig(SET_ON);
+		}
+			
+		RCC_PLLConfig(HSE,m,n,p,q);
+		RCC_HCLKConfig(AHB_CFG); // AHB
+		RCC_PCLK2Config(APB2_CFG); // APB2
+		RCC_PCLK1Config(APB1_CFG); // APB1
+			
+		RCC_PLLCmd(ENABLE);
+		while(!RCC_GetFlagStatus(RCC_FLAG_PLLRDY)){}	
+		RCC_SYSCLKConfig(PLLCLK);
+}

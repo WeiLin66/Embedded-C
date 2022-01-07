@@ -1,0 +1,71 @@
+#include "bsp_led.h"
+
+uint32_t static mutipliter;
+
+void Delay(__IO uint32_t count){
+	for(;count > 0; count--);
+}	
+
+void Delay_Init(void){
+		RCC_ClocksTypeDef RCC_Clocks;
+		RCC_GetClocksFreq(&RCC_Clocks);
+		
+		mutipliter = RCC_Clocks.HCLK_Frequency / 4000000;
+}
+
+void DelayMs(uint32_t miles){
+		miles = mutipliter * miles * 1000 -10;
+		while(miles--);
+}
+
+void GPIO_Initial_API(GPIO_TypeDef* GPIO, uint16_t PIN){	
+    GPIO_InitTypeDef GPIO_Initial_pars;
+    	
+    GPIO_Initial_pars.GPIO_Pin = PIN;
+    GPIO_Initial_pars.GPIO_Mode = GPIO_Mode_OUT;
+    GPIO_Initial_pars.GPIO_OType = GPIO_OType_PP;
+    GPIO_Initial_pars.GPIO_PuPd = GPIO_PuPd_DOWN;
+    GPIO_Initial_pars.GPIO_Speed = GPIO_Fast_Speed;
+    
+    GPIO_Init(GPIO, &GPIO_Initial_pars);
+	  GPIO_SetBits(GPIO, PIN);
+}
+
+void App_Init(void){
+		/*Initialize clock timer*/
+		Delay_Init();
+		/*Enable peripheral cloack*/
+		RCC_AHB1PeriphClockCmd(LED_RCC, ENABLE);
+		
+		/*Initialize pin to set*/
+		GPIO_Initial_API(LED_PORT, LED_Red_PIN);
+		GPIO_Initial_API(LED_PORT, LED_Green_PIN);
+		GPIO_Initial_API(LED_PORT, LED_Blue_PIN);
+}
+
+void LED_Flash(GPIO_TypeDef* GPIO, uint16_t PIN, uint16_t delay_time){
+		GPIO_ResetBits(GPIO, PIN);
+		DelayMs(delay_time);
+		GPIO_SetBits(GPIO, PIN);
+		DelayMs(delay_time);
+}
+
+void LED_Flash_Sysclk(GPIO_TypeDef* GPIO, uint16_t PIN){
+		GPIO_ResetBits(GPIO, PIN);
+		Delay(DELAY_OPARATOR);
+		GPIO_SetBits(GPIO, PIN);
+		Delay(DELAY_OPARATOR);
+}
+
+void App_Thread(void){
+	#if(FLASH_MECHANISM == TIME)
+		LED_Flash(LED_PORT, LED_Red_PIN, DELAY_TIME);
+		LED_Flash(LED_PORT, LED_Green_PIN, DELAY_TIME);
+		LED_Flash(LED_PORT, LED_Blue_PIN, DELAY_TIME);
+	#elif(FLASH_MECHANISM == OPERATION)
+		LED_Flash_Sysclk(LED_PORT, LED_Red_PIN);
+		LED_Flash_Sysclk(LED_PORT, LED_Green_PIN);
+		LED_Flash_Sysclk(LED_PORT, LED_Blue_PIN);
+	#endif
+}
+

@@ -1,8 +1,9 @@
 ..\output\bsp_rccclkconfig.o: ..\User\bsp_rccclkconfig.c
 ..\output\bsp_rccclkconfig.o: ..\User\bsp_rccclkconfig.h
+..\output\bsp_rccclkconfig.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\output\bsp_rccclkconfig.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h
 ..\output\bsp_rccclkconfig.o: ..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 ..\output\bsp_rccclkconfig.o: ..\Libraries\CMSIS\Include\core_cm4.h
-..\output\bsp_rccclkconfig.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\output\bsp_rccclkconfig.o: ..\Libraries\CMSIS\Include\core_cmInstr.h
 ..\output\bsp_rccclkconfig.o: ..\Libraries\CMSIS\Include\core_cmFunc.h
 ..\output\bsp_rccclkconfig.o: ..\Libraries\CMSIS\Include\core_cmSimd.h
@@ -27,7 +28,7 @@
 ..\output\bsp_rccclkconfig.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h
 ..\output\bsp_rccclkconfig.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h
 ..\output\bsp_rccclkconfig.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h
-..\output\bsp_rccclkconfig.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h
+..\output\bsp_rccclkconfig.o: ..\User\misc.h
 ..\output\bsp_rccclkconfig.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_cryp.h
 ..\output\bsp_rccclkconfig.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_hash.h
 ..\output\bsp_rccclkconfig.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rng.h
