@@ -246,9 +246,9 @@ Section Cross References
     bsp_exti.o(i.Interrupt_KEY_Init) refers to bsp_led.o(i.LED_Init) for LED_Init
     bsp_exti.o(i.Interrupt_KEY_Init) refers to bsp_key.o(i.Key_Init) for Key_Init
     bsp_exti.o(i.Interrupt_KEY_Init) refers to stm32f4xx_rcc.o(i.RCC_APB2PeriphClockCmd) for RCC_APB2PeriphClockCmd
-    bsp_exti.o(i.Interrupt_KEY_Init) refers to bsp_exti.o(i.NVIC_Init_CFG) for NVIC_Init_CFG
     bsp_exti.o(i.Interrupt_KEY_Init) refers to stm32f4xx_syscfg.o(i.SYSCFG_EXTILineConfig) for SYSCFG_EXTILineConfig
     bsp_exti.o(i.Interrupt_KEY_Init) refers to bsp_exti.o(i.Interrupt_Init_CFG) for Interrupt_Init_CFG
+    bsp_exti.o(i.Interrupt_KEY_Init) refers to bsp_exti.o(i.NVIC_Init_CFG) for NVIC_Init_CFG
     bsp_exti.o(i.NVIC_Init_CFG) refers to misc.o(i.NVIC_PriorityGroupConfig) for NVIC_PriorityGroupConfig
     bsp_exti.o(i.NVIC_Init_CFG) refers to misc.o(i.NVIC_Init) for NVIC_Init
     entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry10a.o(.ARM.Collect$$$$0000000F) for __rt_final_cpp
@@ -1137,21 +1137,21 @@ Image Symbol Table
 
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12b.o ABSOLUTE
     ..\Libraries\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f429_439xx.s 0x00000000   Number         0  startup_stm32f429_439xx.o ABSOLUTE
     ..\Libraries\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c 0x00000000   Number         0  system_stm32f4xx.o ABSOLUTE
     ..\Libraries\STM32F4xx_StdPeriph_Driver\src\misc.c 0x00000000   Number         0  misc.o ABSOLUTE
@@ -1281,29 +1281,31 @@ Image Symbol Table
     i.GPIO_ToggleBits                        0x080003f0   Section        0  stm32f4xx_gpio.o(i.GPIO_ToggleBits)
     i.HardFault_Handler                      0x080003f8   Section        0  stm32f4xx_it.o(i.HardFault_Handler)
     i.Interrupt_Init_CFG                     0x080003fc   Section        0  bsp_exti.o(i.Interrupt_Init_CFG)
-    i.Interrupt_KEY_Init                     0x08000428   Section        0  bsp_exti.o(i.Interrupt_KEY_Init)
-    i.Key_Init                               0x08000454   Section        0  bsp_key.o(i.Key_Init)
-    i.LED_Init                               0x08000484   Section        0  bsp_led.o(i.LED_Init)
-    i.LED_button_toggle                      0x080004a8   Section        0  bsp_led.o(i.LED_button_toggle)
-    i.MemManage_Handler                      0x080004b8   Section        0  stm32f4xx_it.o(i.MemManage_Handler)
-    i.NMI_Handler                            0x080004bc   Section        0  stm32f4xx_it.o(i.NMI_Handler)
-    i.NVIC_Init                              0x080004c0   Section        0  misc.o(i.NVIC_Init)
-    i.NVIC_Init_CFG                          0x08000538   Section        0  bsp_exti.o(i.NVIC_Init_CFG)
-    i.NVIC_PriorityGroupConfig               0x0800056c   Section        0  misc.o(i.NVIC_PriorityGroupConfig)
-    i.PendSV_Handler                         0x08000580   Section        0  stm32f4xx_it.o(i.PendSV_Handler)
-    i.RCC_AHB1PeriphClockCmd                 0x08000584   Section        0  stm32f4xx_rcc.o(i.RCC_AHB1PeriphClockCmd)
-    i.RCC_APB2PeriphClockCmd                 0x080005a4   Section        0  stm32f4xx_rcc.o(i.RCC_APB2PeriphClockCmd)
-    i.SVC_Handler                            0x080005c4   Section        0  stm32f4xx_it.o(i.SVC_Handler)
-    i.SYSCFG_EXTILineConfig                  0x080005c8   Section        0  stm32f4xx_syscfg.o(i.SYSCFG_EXTILineConfig)
-    i.SetSysClock                            0x08000608   Section        0  system_stm32f4xx.o(i.SetSysClock)
-    SetSysClock                              0x08000609   Thumb Code   272  system_stm32f4xx.o(i.SetSysClock)
-    i.SysTick_Handler                        0x08000728   Section        0  stm32f4xx_it.o(i.SysTick_Handler)
-    i.SystemInit                             0x0800072c   Section        0  system_stm32f4xx.o(i.SystemInit)
-    i.UsageFault_Handler                     0x08000794   Section        0  stm32f4xx_it.o(i.UsageFault_Handler)
-    i.__scatterload_copy                     0x08000798   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x080007a6   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x080007a8   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i.main                                   0x080007b6   Section        0  main.o(i.main)
+    Interrupt_Init_CFG                       0x080003fd   Thumb Code    50  bsp_exti.o(i.Interrupt_Init_CFG)
+    i.Interrupt_KEY_Init                     0x0800042e   Section        0  bsp_exti.o(i.Interrupt_KEY_Init)
+    i.Key_Init                               0x0800045c   Section        0  bsp_key.o(i.Key_Init)
+    i.LED_Init                               0x0800048c   Section        0  bsp_led.o(i.LED_Init)
+    i.LED_button_toggle                      0x080004b0   Section        0  bsp_led.o(i.LED_button_toggle)
+    i.MemManage_Handler                      0x080004c0   Section        0  stm32f4xx_it.o(i.MemManage_Handler)
+    i.NMI_Handler                            0x080004c4   Section        0  stm32f4xx_it.o(i.NMI_Handler)
+    i.NVIC_Init                              0x080004c8   Section        0  misc.o(i.NVIC_Init)
+    i.NVIC_Init_CFG                          0x08000540   Section        0  bsp_exti.o(i.NVIC_Init_CFG)
+    NVIC_Init_CFG                            0x08000541   Thumb Code    50  bsp_exti.o(i.NVIC_Init_CFG)
+    i.NVIC_PriorityGroupConfig               0x08000574   Section        0  misc.o(i.NVIC_PriorityGroupConfig)
+    i.PendSV_Handler                         0x08000588   Section        0  stm32f4xx_it.o(i.PendSV_Handler)
+    i.RCC_AHB1PeriphClockCmd                 0x0800058c   Section        0  stm32f4xx_rcc.o(i.RCC_AHB1PeriphClockCmd)
+    i.RCC_APB2PeriphClockCmd                 0x080005ac   Section        0  stm32f4xx_rcc.o(i.RCC_APB2PeriphClockCmd)
+    i.SVC_Handler                            0x080005cc   Section        0  stm32f4xx_it.o(i.SVC_Handler)
+    i.SYSCFG_EXTILineConfig                  0x080005d0   Section        0  stm32f4xx_syscfg.o(i.SYSCFG_EXTILineConfig)
+    i.SetSysClock                            0x08000610   Section        0  system_stm32f4xx.o(i.SetSysClock)
+    SetSysClock                              0x08000611   Thumb Code   272  system_stm32f4xx.o(i.SetSysClock)
+    i.SysTick_Handler                        0x08000730   Section        0  stm32f4xx_it.o(i.SysTick_Handler)
+    i.SystemInit                             0x08000734   Section        0  system_stm32f4xx.o(i.SystemInit)
+    i.UsageFault_Handler                     0x0800079c   Section        0  stm32f4xx_it.o(i.UsageFault_Handler)
+    i.__scatterload_copy                     0x080007a0   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x080007ae   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x080007b0   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i.main                                   0x080007be   Section        0  main.o(i.main)
     STACK                                    0x20000000   Section     1024  startup_stm32f429_439xx.o(STACK)
 
     Global Symbols
@@ -1426,7 +1428,7 @@ Image Symbol Table
     BusFault_Handler                         0x0800020d   Thumb Code     4  stm32f4xx_it.o(i.BusFault_Handler)
     DebugMon_Handler                         0x08000211   Thumb Code     2  stm32f4xx_it.o(i.DebugMon_Handler)
     EXTI0_IRQHandler                         0x08000215   Thumb Code    28  bsp_exti.o(i.EXTI0_IRQHandler)
-    EXTI15_10_IRQHandler                     0x08000235   Thumb Code    30  bsp_exti.o(i.EXTI15_10_IRQHandler)
+    EXTI15_10_IRQHandler                     0x08000235   Thumb Code    32  bsp_exti.o(i.EXTI15_10_IRQHandler)
     EXTI_ClearITPendingBit                   0x08000259   Thumb Code     6  stm32f4xx_exti.o(i.EXTI_ClearITPendingBit)
     EXTI_GetITStatus                         0x08000265   Thumb Code    20  stm32f4xx_exti.o(i.EXTI_GetITStatus)
     EXTI_Init                                0x0800027d   Thumb Code   142  stm32f4xx_exti.o(i.EXTI_Init)
@@ -1436,30 +1438,28 @@ Image Symbol Table
     GPIO_SetBits                             0x080003ed   Thumb Code     4  stm32f4xx_gpio.o(i.GPIO_SetBits)
     GPIO_ToggleBits                          0x080003f1   Thumb Code     8  stm32f4xx_gpio.o(i.GPIO_ToggleBits)
     HardFault_Handler                        0x080003f9   Thumb Code     4  stm32f4xx_it.o(i.HardFault_Handler)
-    Interrupt_Init_CFG                       0x080003fd   Thumb Code    44  bsp_exti.o(i.Interrupt_Init_CFG)
-    Interrupt_KEY_Init                       0x08000429   Thumb Code    44  bsp_exti.o(i.Interrupt_KEY_Init)
-    Key_Init                                 0x08000455   Thumb Code    38  bsp_key.o(i.Key_Init)
-    LED_Init                                 0x08000485   Thumb Code    32  bsp_led.o(i.LED_Init)
-    LED_button_toggle                        0x080004a9   Thumb Code    16  bsp_led.o(i.LED_button_toggle)
-    MemManage_Handler                        0x080004b9   Thumb Code     4  stm32f4xx_it.o(i.MemManage_Handler)
-    NMI_Handler                              0x080004bd   Thumb Code     2  stm32f4xx_it.o(i.NMI_Handler)
-    NVIC_Init                                0x080004c1   Thumb Code   106  misc.o(i.NVIC_Init)
-    NVIC_Init_CFG                            0x08000539   Thumb Code    50  bsp_exti.o(i.NVIC_Init_CFG)
-    NVIC_PriorityGroupConfig                 0x0800056d   Thumb Code    10  misc.o(i.NVIC_PriorityGroupConfig)
-    PendSV_Handler                           0x08000581   Thumb Code     2  stm32f4xx_it.o(i.PendSV_Handler)
-    RCC_AHB1PeriphClockCmd                   0x08000585   Thumb Code    26  stm32f4xx_rcc.o(i.RCC_AHB1PeriphClockCmd)
-    RCC_APB2PeriphClockCmd                   0x080005a5   Thumb Code    26  stm32f4xx_rcc.o(i.RCC_APB2PeriphClockCmd)
-    SVC_Handler                              0x080005c5   Thumb Code     2  stm32f4xx_it.o(i.SVC_Handler)
-    SYSCFG_EXTILineConfig                    0x080005c9   Thumb Code    60  stm32f4xx_syscfg.o(i.SYSCFG_EXTILineConfig)
-    SysTick_Handler                          0x08000729   Thumb Code     2  stm32f4xx_it.o(i.SysTick_Handler)
-    SystemInit                               0x0800072d   Thumb Code    88  system_stm32f4xx.o(i.SystemInit)
-    UsageFault_Handler                       0x08000795   Thumb Code     4  stm32f4xx_it.o(i.UsageFault_Handler)
-    __scatterload_copy                       0x08000799   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x080007a7   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x080007a9   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    main                                     0x080007b7   Thumb Code     8  main.o(i.main)
-    Region$$Table$$Base                      0x080007c0   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x080007d0   Number         0  anon$$obj.o(Region$$Table)
+    Interrupt_KEY_Init                       0x0800042f   Thumb Code    44  bsp_exti.o(i.Interrupt_KEY_Init)
+    Key_Init                                 0x0800045d   Thumb Code    38  bsp_key.o(i.Key_Init)
+    LED_Init                                 0x0800048d   Thumb Code    32  bsp_led.o(i.LED_Init)
+    LED_button_toggle                        0x080004b1   Thumb Code    16  bsp_led.o(i.LED_button_toggle)
+    MemManage_Handler                        0x080004c1   Thumb Code     4  stm32f4xx_it.o(i.MemManage_Handler)
+    NMI_Handler                              0x080004c5   Thumb Code     2  stm32f4xx_it.o(i.NMI_Handler)
+    NVIC_Init                                0x080004c9   Thumb Code   106  misc.o(i.NVIC_Init)
+    NVIC_PriorityGroupConfig                 0x08000575   Thumb Code    10  misc.o(i.NVIC_PriorityGroupConfig)
+    PendSV_Handler                           0x08000589   Thumb Code     2  stm32f4xx_it.o(i.PendSV_Handler)
+    RCC_AHB1PeriphClockCmd                   0x0800058d   Thumb Code    26  stm32f4xx_rcc.o(i.RCC_AHB1PeriphClockCmd)
+    RCC_APB2PeriphClockCmd                   0x080005ad   Thumb Code    26  stm32f4xx_rcc.o(i.RCC_APB2PeriphClockCmd)
+    SVC_Handler                              0x080005cd   Thumb Code     2  stm32f4xx_it.o(i.SVC_Handler)
+    SYSCFG_EXTILineConfig                    0x080005d1   Thumb Code    60  stm32f4xx_syscfg.o(i.SYSCFG_EXTILineConfig)
+    SysTick_Handler                          0x08000731   Thumb Code     2  stm32f4xx_it.o(i.SysTick_Handler)
+    SystemInit                               0x08000735   Thumb Code    88  system_stm32f4xx.o(i.SystemInit)
+    UsageFault_Handler                       0x0800079d   Thumb Code     4  stm32f4xx_it.o(i.UsageFault_Handler)
+    __scatterload_copy                       0x080007a1   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x080007af   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x080007b1   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    main                                     0x080007bf   Thumb Code     8  main.o(i.main)
+    Region$$Table$$Base                      0x080007c8   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x080007d8   Number         0  anon$$obj.o(Region$$Table)
     __initial_sp                             0x20000400   Data           0  startup_stm32f429_439xx.o(STACK)
 
 
@@ -1470,25 +1470,25 @@ Memory Map of the image
 
   Image Entry point : 0x080001ad
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x000007d0, Max: 0x00100000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x000007d8, Max: 0x00100000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000007d0, Max: 0x00100000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000007d8, Max: 0x00100000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x08000000   0x08000000   0x000001ac   Data   RO            3    RESET               startup_stm32f429_439xx.o
-    0x080001ac   0x080001ac   0x00000000   Code   RO         5465  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x080001ac   0x080001ac   0x00000004   Code   RO         5468    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x080001b0   0x080001b0   0x00000004   Code   RO         5471    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x080001b4   0x080001b4   0x00000000   Code   RO         5473    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x080001b4   0x080001b4   0x00000000   Code   RO         5475    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x080001b4   0x080001b4   0x00000008   Code   RO         5476    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x080001bc   0x080001bc   0x00000004   Code   RO         5483    .ARM.Collect$$$$0000000E  mc_w.l(entry12b.o)
-    0x080001c0   0x080001c0   0x00000000   Code   RO         5478    .ARM.Collect$$$$0000000F  mc_w.l(entry10a.o)
-    0x080001c0   0x080001c0   0x00000000   Code   RO         5480    .ARM.Collect$$$$00000011  mc_w.l(entry11a.o)
-    0x080001c0   0x080001c0   0x00000004   Code   RO         5469    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x080001ac   0x080001ac   0x00000000   Code   RO         5463  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x080001ac   0x080001ac   0x00000004   Code   RO         5466    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x080001b0   0x080001b0   0x00000004   Code   RO         5469    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x080001b4   0x080001b4   0x00000000   Code   RO         5471    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x080001b4   0x080001b4   0x00000000   Code   RO         5473    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x080001b4   0x080001b4   0x00000008   Code   RO         5474    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x080001bc   0x080001bc   0x00000004   Code   RO         5481    .ARM.Collect$$$$0000000E  mc_w.l(entry12b.o)
+    0x080001c0   0x080001c0   0x00000000   Code   RO         5476    .ARM.Collect$$$$0000000F  mc_w.l(entry10a.o)
+    0x080001c0   0x080001c0   0x00000000   Code   RO         5478    .ARM.Collect$$$$00000011  mc_w.l(entry11a.o)
+    0x080001c0   0x080001c0   0x00000004   Code   RO         5467    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
     0x080001c4   0x080001c4   0x00000024   Code   RO            4    .text               startup_stm32f429_439xx.o
-    0x080001e8   0x080001e8   0x00000024   Code   RO         5484    .text               mc_w.l(init.o)
+    0x080001e8   0x080001e8   0x00000024   Code   RO         5482    .text               mc_w.l(init.o)
     0x0800020c   0x0800020c   0x00000004   Code   RO         5270    i.BusFault_Handler  stm32f4xx_it.o
     0x08000210   0x08000210   0x00000002   Code   RO         5271    i.DebugMon_Handler  stm32f4xx_it.o
     0x08000212   0x08000212   0x00000002   PAD
@@ -1503,39 +1503,40 @@ Memory Map of the image
     0x080003ec   0x080003ec   0x00000004   Code   RO         2096    i.GPIO_SetBits      stm32f4xx_gpio.o
     0x080003f0   0x080003f0   0x00000008   Code   RO         2098    i.GPIO_ToggleBits   stm32f4xx_gpio.o
     0x080003f8   0x080003f8   0x00000004   Code   RO         5272    i.HardFault_Handler  stm32f4xx_it.o
-    0x080003fc   0x080003fc   0x0000002c   Code   RO         5422    i.Interrupt_Init_CFG  bsp_exti.o
-    0x08000428   0x08000428   0x0000002c   Code   RO         5423    i.Interrupt_KEY_Init  bsp_exti.o
-    0x08000454   0x08000454   0x00000030   Code   RO         5385    i.Key_Init          bsp_key.o
-    0x08000484   0x08000484   0x00000024   Code   RO         5349    i.LED_Init          bsp_led.o
-    0x080004a8   0x080004a8   0x00000010   Code   RO         5350    i.LED_button_toggle  bsp_led.o
-    0x080004b8   0x080004b8   0x00000004   Code   RO         5273    i.MemManage_Handler  stm32f4xx_it.o
-    0x080004bc   0x080004bc   0x00000002   Code   RO         5274    i.NMI_Handler       stm32f4xx_it.o
-    0x080004be   0x080004be   0x00000002   PAD
-    0x080004c0   0x080004c0   0x00000078   Code   RO          164    i.NVIC_Init         misc.o
-    0x08000538   0x08000538   0x00000032   Code   RO         5424    i.NVIC_Init_CFG     bsp_exti.o
-    0x0800056a   0x0800056a   0x00000002   PAD
-    0x0800056c   0x0800056c   0x00000014   Code   RO          165    i.NVIC_PriorityGroupConfig  misc.o
-    0x08000580   0x08000580   0x00000002   Code   RO         5275    i.PendSV_Handler    stm32f4xx_it.o
-    0x08000582   0x08000582   0x00000002   PAD
-    0x08000584   0x08000584   0x00000020   Code   RO         3023    i.RCC_AHB1PeriphClockCmd  stm32f4xx_rcc.o
-    0x080005a4   0x080005a4   0x00000020   Code   RO         3035    i.RCC_APB2PeriphClockCmd  stm32f4xx_rcc.o
-    0x080005c4   0x080005c4   0x00000002   Code   RO         5276    i.SVC_Handler       stm32f4xx_it.o
-    0x080005c6   0x080005c6   0x00000002   PAD
-    0x080005c8   0x080005c8   0x00000040   Code   RO         4349    i.SYSCFG_EXTILineConfig  stm32f4xx_syscfg.o
-    0x08000608   0x08000608   0x00000120   Code   RO           13    i.SetSysClock       system_stm32f4xx.o
-    0x08000728   0x08000728   0x00000002   Code   RO         5277    i.SysTick_Handler   stm32f4xx_it.o
-    0x0800072a   0x0800072a   0x00000002   PAD
-    0x0800072c   0x0800072c   0x00000068   Code   RO           15    i.SystemInit        system_stm32f4xx.o
-    0x08000794   0x08000794   0x00000004   Code   RO         5278    i.UsageFault_Handler  stm32f4xx_it.o
-    0x08000798   0x08000798   0x0000000e   Code   RO         5488    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x080007a6   0x080007a6   0x00000002   Code   RO         5489    i.__scatterload_null  mc_w.l(handlers.o)
-    0x080007a8   0x080007a8   0x0000000e   Code   RO         5490    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x080007b6   0x080007b6   0x00000008   Code   RO         5230    i.main              main.o
-    0x080007be   0x080007be   0x00000002   PAD
-    0x080007c0   0x080007c0   0x00000010   Data   RO         5486    Region$$Table       anon$$obj.o
+    0x080003fc   0x080003fc   0x00000032   Code   RO         5422    i.Interrupt_Init_CFG  bsp_exti.o
+    0x0800042e   0x0800042e   0x0000002c   Code   RO         5423    i.Interrupt_KEY_Init  bsp_exti.o
+    0x0800045a   0x0800045a   0x00000002   PAD
+    0x0800045c   0x0800045c   0x00000030   Code   RO         5385    i.Key_Init          bsp_key.o
+    0x0800048c   0x0800048c   0x00000024   Code   RO         5349    i.LED_Init          bsp_led.o
+    0x080004b0   0x080004b0   0x00000010   Code   RO         5350    i.LED_button_toggle  bsp_led.o
+    0x080004c0   0x080004c0   0x00000004   Code   RO         5273    i.MemManage_Handler  stm32f4xx_it.o
+    0x080004c4   0x080004c4   0x00000002   Code   RO         5274    i.NMI_Handler       stm32f4xx_it.o
+    0x080004c6   0x080004c6   0x00000002   PAD
+    0x080004c8   0x080004c8   0x00000078   Code   RO          164    i.NVIC_Init         misc.o
+    0x08000540   0x08000540   0x00000032   Code   RO         5424    i.NVIC_Init_CFG     bsp_exti.o
+    0x08000572   0x08000572   0x00000002   PAD
+    0x08000574   0x08000574   0x00000014   Code   RO          165    i.NVIC_PriorityGroupConfig  misc.o
+    0x08000588   0x08000588   0x00000002   Code   RO         5275    i.PendSV_Handler    stm32f4xx_it.o
+    0x0800058a   0x0800058a   0x00000002   PAD
+    0x0800058c   0x0800058c   0x00000020   Code   RO         3023    i.RCC_AHB1PeriphClockCmd  stm32f4xx_rcc.o
+    0x080005ac   0x080005ac   0x00000020   Code   RO         3035    i.RCC_APB2PeriphClockCmd  stm32f4xx_rcc.o
+    0x080005cc   0x080005cc   0x00000002   Code   RO         5276    i.SVC_Handler       stm32f4xx_it.o
+    0x080005ce   0x080005ce   0x00000002   PAD
+    0x080005d0   0x080005d0   0x00000040   Code   RO         4349    i.SYSCFG_EXTILineConfig  stm32f4xx_syscfg.o
+    0x08000610   0x08000610   0x00000120   Code   RO           13    i.SetSysClock       system_stm32f4xx.o
+    0x08000730   0x08000730   0x00000002   Code   RO         5277    i.SysTick_Handler   stm32f4xx_it.o
+    0x08000732   0x08000732   0x00000002   PAD
+    0x08000734   0x08000734   0x00000068   Code   RO           15    i.SystemInit        system_stm32f4xx.o
+    0x0800079c   0x0800079c   0x00000004   Code   RO         5278    i.UsageFault_Handler  stm32f4xx_it.o
+    0x080007a0   0x080007a0   0x0000000e   Code   RO         5486    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x080007ae   0x080007ae   0x00000002   Code   RO         5487    i.__scatterload_null  mc_w.l(handlers.o)
+    0x080007b0   0x080007b0   0x0000000e   Code   RO         5488    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x080007be   0x080007be   0x00000008   Code   RO         5230    i.main              main.o
+    0x080007c6   0x080007c6   0x00000002   PAD
+    0x080007c8   0x080007c8   0x00000010   Data   RO         5484    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x080007d0, Size: 0x00000400, Max: 0x00030000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x080007d8, Size: 0x00000400, Max: 0x00030000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1549,7 +1550,7 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       206         10          0          0          0       2620   bsp_exti.o
+       212          8          0          0          0       2547   bsp_exti.o
         76         10          0          0          0       1375   bsp_key.o
        100          4          0          0          0       1978   bsp_led.o
          8          0          0          0          0        463   main.o
@@ -1563,9 +1564,9 @@ Image component sizes
        392         32          0          0          0     261249   system_stm32f4xx.o
 
     ----------------------------------------------------------------------
-      1466        120        444          0       1024     281373   Object Totals
+      1474        118        444          0       1024     281300   Object Totals
          0          0         16          0          0          0   (incl. Generated)
-        14          0          0          0          0          0   (incl. Padding)
+        16          0          0          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1603,15 +1604,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      1556        136        444          0       1024     278845   Grand Totals
-      1556        136        444          0       1024     278845   ELF Image Totals
-      1556        136        444          0          0          0   ROM Totals
+      1564        134        444          0       1024     278772   Grand Totals
+      1564        134        444          0       1024     278772   ELF Image Totals
+      1564        134        444          0          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 2000 (   1.95kB)
+    Total RO  Size (Code + RO Data)                 2008 (   1.96kB)
     Total RW  Size (RW Data + ZI Data)              1024 (   1.00kB)
-    Total ROM Size (Code + RO Data + RW Data)       2000 (   1.95kB)
+    Total ROM Size (Code + RO Data + RW Data)       2008 (   1.96kB)
 
 ==============================================================================
 

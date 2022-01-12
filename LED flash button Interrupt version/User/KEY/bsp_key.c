@@ -19,7 +19,7 @@ void Key_Init(){
 		RCC_AHB1PeriphClockCmd(LED_KEY1_RCC, ENABLE);
 		RCC_AHB1PeriphClockCmd(LED_KEY2_RCC, ENABLE);
 	
-		/*Initialize pin to set*/
+		/*Initialize*/
 		GPIO_KEY_Init(LED_KEY1_PORT, LED_KEY1_PIN);
 		GPIO_KEY_Init(LED_KEY2_PORT, LED_KEY2_PIN);
 }

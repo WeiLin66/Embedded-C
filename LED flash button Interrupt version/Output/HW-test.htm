@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\Output\HW-test.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\Output\HW-test.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Wed Jan 12 07:57:36 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Wed Jan 12 21:05:42 2022
 <BR><P>
 <H3>Maximum Stack Usage =         60 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -448,7 +448,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f429_439xx.o(RESET)
 </UL>
-<P><STRONG><a name="[32]"></a>EXTI15_10_IRQHandler</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, bsp_exti.o(i.EXTI15_10_IRQHandler))
+<P><STRONG><a name="[32]"></a>EXTI15_10_IRQHandler</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, bsp_exti.o(i.EXTI15_10_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = EXTI15_10_IRQHandler &rArr; LED_button_toggle
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI_GetITStatus
@@ -506,20 +506,12 @@ Global Symbols
 <P><STRONG><a name="[2]"></a>HardFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f4xx_it.o(i.HardFault_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f429_439xx.o(RESET)
 </UL>
-<P><STRONG><a name="[72]"></a>Interrupt_Init_CFG</STRONG> (Thumb, 44 bytes, Stack size 16 bytes, bsp_exti.o(i.Interrupt_Init_CFG))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Interrupt_Init_CFG
-</UL>
-<BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI_Init
-</UL>
-<BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Interrupt_KEY_Init
-</UL>
-
 <P><STRONG><a name="[74]"></a>Interrupt_KEY_Init</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, bsp_exti.o(i.Interrupt_KEY_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = Interrupt_KEY_Init &rArr; Key_Init &rArr; GPIO_KEY_Init &rArr; GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SYSCFG_EXTILineConfig
-<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init_CFG
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SYSCFG_EXTILineConfig
+<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init_CFG
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Interrupt_Init_CFG
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Key_Init
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Init
@@ -563,20 +555,11 @@ Global Symbols
 <P><STRONG><a name="[7d]"></a>NVIC_Init</STRONG> (Thumb, 106 bytes, Stack size 16 bytes, misc.o(i.NVIC_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = NVIC_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init_CFG
-</UL>
-
-<P><STRONG><a name="[78]"></a>NVIC_Init_CFG</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, bsp_exti.o(i.NVIC_Init_CFG))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = NVIC_Init_CFG &rArr; NVIC_Init
-</UL>
-<BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_PriorityGroupConfig
-<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init
-</UL>
-<BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Interrupt_KEY_Init
+<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init_CFG
 </UL>
 
 <P><STRONG><a name="[7c]"></a>NVIC_PriorityGroupConfig</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, misc.o(i.NVIC_PriorityGroupConfig))
-<BR><BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init_CFG
+<BR><BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init_CFG
 </UL>
 
 <P><STRONG><a name="[8]"></a>PendSV_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f4xx_it.o(i.PendSV_Handler))
@@ -594,7 +577,7 @@ Global Symbols
 <P><STRONG><a name="[6]"></a>SVC_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f4xx_it.o(i.SVC_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f429_439xx.o(RESET)
 </UL>
-<P><STRONG><a name="[79]"></a>SYSCFG_EXTILineConfig</STRONG> (Thumb, 60 bytes, Stack size 12 bytes, stm32f4xx_syscfg.o(i.SYSCFG_EXTILineConfig))
+<P><STRONG><a name="[78]"></a>SYSCFG_EXTILineConfig</STRONG> (Thumb, 60 bytes, Stack size 12 bytes, stm32f4xx_syscfg.o(i.SYSCFG_EXTILineConfig))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = SYSCFG_EXTILineConfig
 </UL>
 <BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Interrupt_KEY_Init
@@ -633,6 +616,23 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = SetSysClock
 </UL>
 <BR>[Called By]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
+</UL>
+
+<P><STRONG><a name="[72]"></a>Interrupt_Init_CFG</STRONG> (Thumb, 50 bytes, Stack size 16 bytes, bsp_exti.o(i.Interrupt_Init_CFG))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Interrupt_Init_CFG
+</UL>
+<BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI_Init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Interrupt_KEY_Init
+</UL>
+
+<P><STRONG><a name="[79]"></a>NVIC_Init_CFG</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, bsp_exti.o(i.NVIC_Init_CFG))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = NVIC_Init_CFG &rArr; NVIC_Init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_PriorityGroupConfig
+<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Interrupt_KEY_Init
 </UL>
 <P>
 <H3>
