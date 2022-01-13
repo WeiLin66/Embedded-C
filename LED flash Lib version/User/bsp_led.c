@@ -1,6 +1,6 @@
 #include "bsp_led.h"
 
-uint32_t static mutipliter;
+static uint32_t mutipliter;
 
 void assert_failed(uint8_t* file, uint32_t line){
     printf("file: %s\nline: %d\n", file, line);
