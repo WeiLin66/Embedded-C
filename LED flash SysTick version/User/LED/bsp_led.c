@@ -1,5 +1,7 @@
 #include "bsp_led.h"
 
+uint32_t led_flash_count=0;
+
 void GPIO_Initial_API(GPIO_TypeDef* GPIO, uint16_t PIN){
     GPIO_InitTypeDef GPIO_Initial_pars;
     	
@@ -24,9 +26,9 @@ void GPIO_flash_Init(void){
 }
 
 void GPIO_Flash(){
-	static int32_t count=0, cur_flash=0, blink;
+	static int32_t cur_flash=0, blink;
 	
-	if(count >= 1000){
+	if(led_flash_count >= 1000){
 		if(blink%2 == 0){
 			cur_flash %= 3;
 			switch(cur_flash){
@@ -53,8 +55,8 @@ void GPIO_Flash(){
 				GPIO_SetBits(LED_PORT, LED_Blue_PIN);
 		}
 			
-		count = 0;
+		led_flash_count = 0;
 		blink++;
 	}
-	count++;
+//	led_flash_count++;
 }

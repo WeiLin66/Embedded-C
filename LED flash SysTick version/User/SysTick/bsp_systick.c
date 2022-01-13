@@ -18,10 +18,10 @@ void System_tick_Init(uint32_t ticks){
 void delay_ms(uint32_t delay){
 	uint32_t mutipliter;
 	
-	RCC_ClocksTypeDef RCC_Get_Frequency;
-	RCC_GetClocksFreq(&RCC_Get_Frequency);
-	
+//	RCC_ClocksTypeDef RCC_Get_Frequency;
+//	RCC_GetClocksFreq(&RCC_Get_Frequency);
 //	mutipliter = RCC_Get_Frequency.SYSCLK_Frequency;
+	
 	mutipliter = SystemCoreClock/1000;
 	mutipliter *= delay;
 	while(mutipliter--);

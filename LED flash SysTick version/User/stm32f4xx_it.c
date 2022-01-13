@@ -142,7 +142,7 @@ void PendSV_Handler(void)
   */
 void SysTick_Handler(void)
 {
-	GPIO_Flash();
+	led_flash_count++;
 }
 
 /******************************************************************************/

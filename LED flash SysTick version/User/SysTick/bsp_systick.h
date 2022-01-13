@@ -1,6 +1,8 @@
 #ifndef __BSP_SYSTICK_H_
 #define __BSP_SYSTICK_H_
 
+#define INTERRUPT
+
 #include <stdint.h>
 #include "stm32f4xx_rcc.h"
 

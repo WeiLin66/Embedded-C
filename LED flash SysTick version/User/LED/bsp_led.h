@@ -12,6 +12,7 @@
 #define LED_PORT 				GPIOH
 #define LED_RCC 				RCC_AHB1Periph_GPIOH
 
+extern uint32_t led_flash_count;
 extern void GPIO_flash_Init(void);
 extern void GPIO_Flash(void);
 
