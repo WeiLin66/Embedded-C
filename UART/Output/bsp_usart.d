@@ -38,3 +38,5 @@
 ..\output\bsp_usart.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h
 ..\output\bsp_usart.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_ltdc.h
 ..\output\bsp_usart.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
+..\output\bsp_usart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\output\bsp_usart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

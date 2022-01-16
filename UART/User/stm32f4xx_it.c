@@ -144,6 +144,15 @@ void SysTick_Handler(void)
 //  TimingDelay_Decrement(); // not defined!
 }
 
+void USART1_IRQHandler(void){
+	if(USART_GetFlagStatus(USART1, USART_FLAG_RXNE) == SET){
+		uint16_t tmp = USART_ReceiveData(USART1);
+		
+		USART_SendData(USART1, tmp);
+	}
+//	while(USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);
+}
+
 /******************************************************************************/
 /*                 STM32F4xx Peripherals Interrupt Handlers                   */
 /*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */
