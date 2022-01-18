@@ -39,5 +39,6 @@ void Usart_SendHalfWord( USART_TypeDef * pUSARTx, uint16_t ch);
 void delay_ms(uint32_t delay);
 void cmd_receive(uint8_t tmp);
 extern uint8_t led_control;
+extern uint8_t action;
 
 #endif /* __BSP_USART_H_ */

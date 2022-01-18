@@ -3,18 +3,54 @@
 uint8_t cmd[256]={0};
 static uint8_t cmd_count=0;
 uint8_t led_control=0;
+uint8_t action=0;
 char* table[] ={
-	"flash %d",
-	"stop"
+	"flash",
+	"led %s %d",
+	"stop",
+	"clear"
 };
 
 void console_cmd(){
-	if(strcmp((char*)cmd, "flash") == 0){
+	int arg;
+	char led[10];
+	if(strcmp((char*)cmd, table[0]) == 0){
 		led_control = 1;
+	}
+	else if(sscanf((char*)cmd, table[1], led, &arg) == 2){
+		if(strcmp(led, "r") == 0){
+			if(arg == 0)
+				GPIO_ResetBits(LED_PORT, LED_Red_PIN);
+			else
+				GPIO_SetBits(LED_PORT, LED_Red_PIN);
+		}
+		else if(strcmp(led, "g") == 0){
+			if(arg == 0)
+				GPIO_ResetBits(LED_PORT, LED_Green_PIN);
+			else
+				GPIO_SetBits(LED_PORT, LED_Green_PIN);
+		}
+		else if(strcmp(led, "b") == 0){
+			if(arg == 0)
+				GPIO_ResetBits(LED_PORT, LED_Blue_PIN);
+			else
+				GPIO_SetBits(LED_PORT, LED_Blue_PIN);
+		}
+//		led_control = 1;
 	}
 	else if(strcmp((char*)cmd, "stop") == 0){
 		led_control = 0;
 	}
+	else if(strcmp((char*)cmd, "clear") == 0){
+		GPIO_SetBits(LED_PORT, LED_Red_PIN);
+		GPIO_SetBits(LED_PORT, LED_Green_PIN);
+		GPIO_SetBits(LED_PORT, LED_Blue_PIN);
+		led_control = 0;
+	}
+	else{
+		printf("\nNo such command, please check again!\n");
+	}
+	
 	memset(cmd, '0', 256);
 } 
 
@@ -128,24 +164,19 @@ void Usart_SendHalfWord( USART_TypeDef * pUSARTx, uint16_t ch)
   while (USART_GetFlagStatus(pUSARTx, USART_FLAG_TXE) == RESET);  
 }
 
-///重定向c库函数printf到串口，重定向后可使用printf函数
 int fputc(int ch, FILE *f)
 {
-    /* 发送一个字节数据到串口 */
     USART_SendData(DEBUG_USART, (uint8_t) ch);
     
-    /* 等待发送完毕 */
     while (USART_GetFlagStatus(DEBUG_USART, USART_FLAG_TXE) == RESET);    
   
     return (ch);
 }
 
-///重定向c库函数scanf到串口，重写向后可使用scanf、getchar等函数
 int fgetc(FILE *f)
 {
-    /* 等待串口输入数据 */
     while (USART_GetFlagStatus(DEBUG_USART, USART_FLAG_RXNE) == RESET);
 
     return (int)USART_ReceiveData(DEBUG_USART);
 }
-/*********************************************END OF FILE**********************/
+

@@ -31,3 +31,11 @@
     2. 每1秒觸發LED閃爍
     3. LED規律: 紅 → 暗 → 綠 → 暗 → 藍 → ...
 
+### USART console command實驗
+    1. 使用Access Port與開發版溝通
+    2. 使用中斷獲取command消息
+    3. 編寫多個控制指令
+        1. led r/g/b 0/1 → 控制單顆LED
+        2. flash → LED流水燈
+        3. stop → 停在當前動作
+        4. clear → 復位
