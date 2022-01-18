@@ -1,5 +1,35 @@
 #include "bsp_usart.h"
 
+uint8_t cmd[256]={0};
+static uint8_t cmd_count=0;
+uint8_t led_control=0;
+char* table[] ={
+	"flash %d",
+	"stop"
+};
+
+void console_cmd(){
+	if(strcmp((char*)cmd, "flash") == 0){
+		led_control = 1;
+	}
+	else if(strcmp((char*)cmd, "stop") == 0){
+		led_control = 0;
+	}
+	memset(cmd, '0', 256);
+} 
+
+void cmd_receive(uint8_t tmp){
+	if(tmp == 0x0D){
+		cmd[cmd_count] = '\0';
+		console_cmd();
+		memset(cmd, '0', 256);
+		cmd_count = 0;
+	}
+	else{
+		cmd[cmd_count++] = tmp;
+	}
+}
+
 void delay_ms(uint32_t delay){
 	uint32_t mutipliter;
 	

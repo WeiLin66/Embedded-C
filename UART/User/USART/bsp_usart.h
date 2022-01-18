@@ -2,6 +2,7 @@
 #define __BSP_USART_H_
 
 #include "stm32f4xx.h"
+#include "bsp_led.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -26,11 +27,17 @@
 #define DEBUG_USART_IRQ                         USART1_IRQn
 #define DEBUG_PRINT															printf
 /************************************************************/
+typedef enum usart_table{
+	flash=0,
+	stop
+}Utable;
 
 void USART_CFG(void);
 void Usart_SendByte( USART_TypeDef * pUSARTx, uint8_t ch);
 void Usart_SendString( USART_TypeDef * pUSARTx, char *str);
 void Usart_SendHalfWord( USART_TypeDef * pUSARTx, uint16_t ch);
 void delay_ms(uint32_t delay);
+void cmd_receive(uint8_t tmp);
+extern uint8_t led_control;
 
 #endif /* __BSP_USART_H_ */
