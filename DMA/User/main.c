@@ -1,25 +1,30 @@
 #include "stm32f4xx.h"
 #include "dma_bsp.h"
+#include "string.h"
 
+/*flash*/
 const uint8_t source[TEMP_SIZE] = {'a', 'p', 'p', 'l', 'e',
 																   'a', 'p', 'p', 'l', 'e',
 																   'a', 'p', 'p', 'l', 'e',
 																   'a', 'p', 'p', 'l', 'e'};
-
-uint8_t destinattion[TEMP_SIZE];
+/*SRAM*/
+uint8_t destination[TEMP_SIZE];
 																 
 void dma_cfg(){
 	DMA_InitTypeDef DMA_Init_Structure;
+	__IO uint32_t timeout = TIMEOUT;
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA2, ENABLE);
 
 	DMA_DeInit(DMA_STREAM);
 	
+	while(DMA_GetCmdStatus(DMA_STREAM) == ENABLE){}
+		
 	/*DMA Channel*/
 	DMA_Init_Structure.DMA_Channel = DMA_CHANNEL;
 	/*source address*/
 	DMA_Init_Structure.DMA_PeripheralBaseAddr = (uint32_t)source;
 	/*destination address*/
-	DMA_Init_Structure.DMA_Memory0BaseAddr = (uint32_t)destinattion;
+	DMA_Init_Structure.DMA_Memory0BaseAddr = (uint32_t)destination;
 	/*transfer modes*/
 	DMA_Init_Structure.DMA_DIR = DMA_DIR_MemoryToMemory;
 	/*data total number*/
@@ -42,16 +47,50 @@ void dma_cfg(){
 	DMA_Init_Structure.DMA_MemoryBurst = DMA_MemoryBurst_Single;
 	DMA_Init_Structure.DMA_PeripheralBurst = DMA_PeripheralBurst_Single;
 	
-	DMA_Init(DMA_STREAM, &DMA_Init_Structure);
+	DMA_Init(DMA_STREAM, &DMA_Init_Structure);	
+	DMA_ClearFlag(DMA_STREAM, DMA_CLEAR_FLAG);
 	DMA_Cmd(DMA_STREAM, ENABLE);
 	
+	while(DMA_GetCmdStatus(DMA_STREAM) == DISABLE){
+		timeout--;
+	}
+		
+	if(timeout < 1000){
+		App_Thread();
+	}
+	
 }
+
+/* comapre two data*/
+uint8_t comapreData(const uint8_t* src, uint8_t* dest){
+	if(src == NULL || dest == NULL)
+		return 0;
+	
+	if(strlen((char*)src) != strlen((char*)dest))
+		return 0;
+	else{
+		for(int i=0; i<strlen((char*)src); i++){
+			if(src[i] != dest[i])
+				return 0;
+		}
+		return 1;
+	}
+}
+
 int main(void)
 {  
+	App_Init();
 	dma_cfg();
-     
+  uint8_t flag = comapreData(source, destination);  
+	
   /* Infinite loop */
   while (1)
   {
+		if(flag){
+			// green light
+		}
+		else{
+			// red light
+		}
   }
 }
