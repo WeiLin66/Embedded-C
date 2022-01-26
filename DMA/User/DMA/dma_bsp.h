@@ -8,7 +8,7 @@
 #define DMA_STREAM     DMA2_Stream0 // change to other stream
 #define DMA_CHANNEL    DMA_Channel_0
 #define TEMP_SIZE      20
-#define TIMEOUT				 0x00000fff
+#define TIMEOUT				 0x00000400
 
 /*Increase portability of bsp_led*/
 #define LED_Red_PIN 		GPIO_Pin_10
