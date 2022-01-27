@@ -20,7 +20,7 @@ void dma_cfg(){
 	while(DMA_GetCmdStatus(DMA_STREAM) == ENABLE){}
 		
 	/*DMA Channel*/
-	DMA_Init_Structure.DMA_Channel = DMA_CHANNEL; //support othere channel?
+	DMA_Init_Structure.DMA_Channel = DMA_CHANNEL; //support other channels
 	/*source address*/
 	DMA_Init_Structure.DMA_PeripheralBaseAddr = (uint32_t)source;
 	/*destination address*/
@@ -30,15 +30,15 @@ void dma_cfg(){
 	/*data total number*/
 	DMA_Init_Structure.DMA_BufferSize = TEMP_SIZE;
 	/*PeripheralInc increase automatically*/
-	DMA_Init_Structure.DMA_PeripheralInc = DMA_PeripheralInc_Enable; // DMA_PeripheralInc_Disable
+	DMA_Init_Structure.DMA_PeripheralInc = DMA_PeripheralInc_Enable;
 	/*PeripheralInc increase automatically*/	
-	DMA_Init_Structure.DMA_MemoryInc = DMA_MemoryInc_Enable; // DMA_MemoryInc_Disable
+	DMA_Init_Structure.DMA_MemoryInc = DMA_MemoryInc_Enable;
 	/*source data size*/
 	DMA_Init_Structure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
 	/*destination data size*/
 	DMA_Init_Structure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;
 	/*circular mode or not*/
-	DMA_Init_Structure.DMA_Mode = DMA_Mode_Normal; // how about circular mode?
+	DMA_Init_Structure.DMA_Mode = DMA_Mode_Normal; //DMA_Mode_Normal, DMA_Mode_Circular
 	/*priority*/
 	DMA_Init_Structure.DMA_Priority = DMA_Priority_Medium;
 	/*FIFO setting*/
@@ -97,6 +97,7 @@ int main(void)
 	dma_cfg();
   uint8_t flag = comapreData(source, destination, TEMP_SIZE);  
 	Status_LED(flag);
+	memset(destination, 0, TEMP_SIZE); // test circular mode
 
   /* Infinite loop */
   while (1)

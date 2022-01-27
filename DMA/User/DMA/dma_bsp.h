@@ -6,7 +6,7 @@
 #include "stdint.h"
 
 #define DMA_STREAM     DMA2_Stream0 // change to other stream
-#define DMA_CHANNEL    DMA_Channel_0
+#define DMA_CHANNEL    DMA_Channel_0 // change to other channel
 #define TEMP_SIZE      20
 #define TIMEOUT				 0x00000400
 
