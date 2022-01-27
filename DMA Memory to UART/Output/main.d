@@ -42,3 +42,4 @@
 ..\output\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\output\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\time.h
 ..\output\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+..\output\main.o: ..\User\DMA\dma_bsp.h

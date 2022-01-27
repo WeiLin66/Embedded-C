@@ -39,3 +39,12 @@
         2. flash → LED流水燈
         3. stop → 停在當前動作
         4. clear → 復位
+
+### DMA實驗
+    1. Memory to Memory
+        1. flash to SRAM
+        2. 使用LED顯示過程、結果、狀態
+    2. Memory to Peripheral
+        1. flash to USART
+        2. 在PC端打印出結果
+        3. 使用FIFO模式、突發模式
