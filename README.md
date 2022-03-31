@@ -48,3 +48,6 @@
         1. flash to USART
         2. 在PC端打印出結果
         3. 使用FIFO模式、突發模式
+### I2C實驗
+
+### SPI實驗
