@@ -38,4 +38,9 @@
 ..\output\stm32f4xx_it.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h
 ..\output\stm32f4xx_it.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_ltdc.h
 ..\output\stm32f4xx_it.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
+..\output\stm32f4xx_it.o: ..\User\USART\bsp_usart.h
+..\output\stm32f4xx_it.o: ..\User\LED\bsp_led.h
+..\output\stm32f4xx_it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\output\stm32f4xx_it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\time.h
+..\output\stm32f4xx_it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 ..\output\stm32f4xx_it.o: ..\User\main.h

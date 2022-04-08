@@ -29,6 +29,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_it.h"
+#include "bsp_usart.h"
 #include "main.h"
 
 /** @addtogroup Template_Project
@@ -142,6 +143,16 @@ void PendSV_Handler(void)
 void SysTick_Handler(void)
 {
 //  TimingDelay_Decrement(); // not defined!
+}
+
+void USART1_IRQHandler(void){
+	if(USART_GetFlagStatus(USART1, USART_FLAG_RXNE) == SET){
+		uint16_t tmp = USART_ReceiveData(USART1);
+		
+		cmd_receive(tmp);
+		USART_SendData(USART1, tmp);
+	}
+//	while(USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);
 }
 
 /******************************************************************************/
