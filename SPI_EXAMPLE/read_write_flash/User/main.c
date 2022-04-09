@@ -61,7 +61,7 @@ int main(void)
 	/* 配置串口1为：115200 8-N-1 */
 	Debug_USART_Config();
   
-	printf("\r\n这是一个串行SPI flash实验 \r\n");
+	printf("[SPI][FLASH W25Q256JV READ JEDEC ID TEST]\n");
 	
 	/* 32M串行flash W25Q128初始化 */
 	SPI_FLASH_Init();
@@ -73,6 +73,7 @@ int main(void)
 	FlashID = SPI_FLASH_ReadID();
 	
 	printf("\r\nFlashID is 0x%X,  Manufacturer Device ID is 0x%X\r\n", FlashID, DeviceID);
+	
 	
 	/* 检验 SPI Flash ID */
 	if (FlashID == sFLASH_ID || FlashID == sFLASH_ID2) 

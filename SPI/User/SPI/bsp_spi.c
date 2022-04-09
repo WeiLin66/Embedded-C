@@ -1,6 +1,8 @@
 #include "bsp_spi.h"
 
-
+/*
+ * GPIO Init function
+ */
 void Flash_GPIO_Init(){
 	GPIO_InitTypeDef gpio_init;
 
@@ -35,6 +37,9 @@ void Flash_GPIO_Init(){
 }
 
 
+/*
+ * SPI Init function
+ */
 void Flash_SPI_Init(){
 	SPI_InitTypeDef spi_init;
 	
@@ -70,6 +75,9 @@ void Flash_Init(){
 }
 
 
+/*
+ * Flash Send & Read operation
+ */
 static uint8_t SPI_FLASH_SendByte(uint8_t byte){
 
   while (SPI_I2S_GetFlagStatus(FLASH_SPI, SPI_I2S_FLAG_TXE) == RESET){}
@@ -80,6 +88,7 @@ static uint8_t SPI_FLASH_SendByte(uint8_t byte){
 
   return SPI_I2S_ReceiveData(FLASH_SPI);
 }
+
 
 /**
  * Read Flash data
@@ -113,4 +122,116 @@ uint32_t Flash_Read_WRITE_JEDEC_ID(){
 }
 
 
+/*
+ * Flash Write Enable
+ */
+void Flash_Write_Enable(){
+	FLASH_SPI_CSS_LOW();
+	SPI_FLASH_SendByte(FLASH_WRITE_EN);
+	FLASH_SPI_CSS_HIGH();
+}
 
+
+/*
+ * Wait until BUSY & WEL become 0
+ */
+void Flash_Wait_For_Ready(){
+	uint8_t status=0;
+	FLASH_SPI_CSS_LOW();
+	SPI_FLASH_SendByte(FLASH_READ_STATUS_REG);
+	
+	do{
+		status = SPI_FLASH_SendByte(FLASH_DUMMY);
+	}while((status & 0x01) == SET);
+	
+	FLASH_SPI_CSS_HIGH();
+}
+
+
+/*
+ * Flash Power Down
+ */
+void Flash_Power_Down(){
+	FLASH_SPI_CSS_LOW();
+	SPI_FLASH_SendByte(FLASH_POWER_DOWN);
+	FLASH_SPI_CSS_HIGH();
+}
+
+
+/*
+ * Flash Release Power Down
+ */
+uint32_t Flash_Release_Power_Down(){
+	uint32_t rev;
+	FLASH_SPI_CSS_LOW();
+	SPI_FLASH_SendByte(FLASH_RELEASE_POWER_DOWN);
+	
+	SPI_FLASH_SendByte(FLASH_DUMMY);
+	SPI_FLASH_SendByte(FLASH_DUMMY);
+	SPI_FLASH_SendByte(FLASH_DUMMY);	
+	rev = SPI_FLASH_SendByte(FLASH_DUMMY);
+	FLASH_SPI_CSS_HIGH();
+	
+	return rev;
+}
+
+
+/*
+ * Flash Erase Sector
+ */
+void Flash_Erase_Sector(uint32_t addr){
+	Flash_Write_Enable();
+	
+	FLASH_SPI_CSS_LOW();
+	SPI_FLASH_SendByte(FLASH_ERASE_SECTOR);
+	SPI_FLASH_SendByte((addr >> 24) & 0xff);
+	SPI_FLASH_SendByte((addr >> 16) & 0xff);
+	SPI_FLASH_SendByte((addr >> 8) & 0xff);
+	SPI_FLASH_SendByte(addr & 0xff);
+	FLASH_SPI_CSS_HIGH();
+	
+	Flash_Wait_For_Ready();
+}
+
+
+/*
+ * Flash Read Data
+ */
+void Flash_Read_Data(uint32_t addr, uint8_t* buffer, uint32_t count){
+	Flash_Wait_For_Ready();
+	FLASH_SPI_CSS_LOW();
+	SPI_FLASH_SendByte(FLASH_READ_DATA);
+	SPI_FLASH_SendByte((addr >> 24) & 0xff);
+	SPI_FLASH_SendByte((addr >> 16) & 0xff);
+	SPI_FLASH_SendByte((addr >> 8) & 0xff);
+	SPI_FLASH_SendByte(addr & 0xff);
+	
+  while (count--){
+    *(buffer++) = SPI_FLASH_SendByte(FLASH_DUMMY);
+  }
+	
+	FLASH_SPI_CSS_HIGH();
+}
+
+
+/*
+ * Flash Page Write
+ */
+void Flash_Write_Data(uint32_t addr, uint8_t* data, int count){	
+	Flash_Write_Enable();	
+	FLASH_SPI_CSS_LOW();
+	SPI_FLASH_SendByte(FLASH_PAGE_PROGRAME);
+	SPI_FLASH_SendByte((addr >> 24) & 0xff);
+	SPI_FLASH_SendByte((addr >> 16) & 0xff);
+	SPI_FLASH_SendByte((addr >> 8) & 0xff);
+	SPI_FLASH_SendByte(addr & 0xff);
+	
+	while(count--){
+		SPI_FLASH_SendByte(*data);
+		data++;
+	}
+		
+	FLASH_SPI_CSS_HIGH();
+	Flash_Wait_For_Ready();
+}
+	

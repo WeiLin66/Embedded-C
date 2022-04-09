@@ -8,26 +8,26 @@
 // RCC CLOCK
 /*****************************************/
 // SPI
-#define SPI_RCC_CLK_CMD			    RCC_APB2PeriphClockCmd
-#define SPI_RCC_CLK_PERIPH			RCC_APB2Periph_SPI5
-#define SPI_RCC_CLK_OP					ENABLE 
+#define SPI_RCC_CLK_CMD			     RCC_APB2PeriphClockCmd
+#define SPI_RCC_CLK_PERIPH			 RCC_APB2Periph_SPI5
+#define SPI_RCC_CLK_OP					 ENABLE 
 
 // GPIO
-#define GPIO_RCC_CLK_CMD				RCC_AHB1PeriphClockCmd
-#define GPIO_RCC_CLK_PERIPH			RCC_AHB1Periph_GPIOF
-#define GPIO_RCC_CLK_OP					ENABLE
+#define GPIO_RCC_CLK_CMD				 RCC_AHB1PeriphClockCmd
+#define GPIO_RCC_CLK_PERIPH			 RCC_AHB1Periph_GPIOF
+#define GPIO_RCC_CLK_OP					 ENABLE
 
 /*****************************************/
 
 // pin define
 /*****************************************/
 // CSS
-#define SPI_CSS_GPIO_PORT       GPIOF
-#define SPI_CSS_GPIO_PIN        GPIO_Pin_6
-#define SPI_CSS_GPIO_MODE  			GPIO_Mode_OUT
-#define SPI_CSS_GPIO_SPEED			GPIO_Fast_Speed
-#define SPI_CSS_GPIO_PUPD				GPIO_PuPd_NOPULL
-#define SPI_CSS_GPIO_OTYPE			GPIO_OType_PP 
+#define SPI_CSS_GPIO_PORT        GPIOF
+#define SPI_CSS_GPIO_PIN         GPIO_Pin_6
+#define SPI_CSS_GPIO_MODE  			 GPIO_Mode_OUT
+#define SPI_CSS_GPIO_SPEED			 GPIO_Fast_Speed
+#define SPI_CSS_GPIO_PUPD				 GPIO_PuPd_NOPULL
+#define SPI_CSS_GPIO_OTYPE			 GPIO_OType_PP 
 
 // SCLK
 #define SPI_SCLK_GPIO_PORT       GPIOF
@@ -71,13 +71,36 @@
 #define FLASH_SPI_FIRSTBIT			 SPI_FirstBit_MSB
 #define FLASH_SPI_MODE					 SPI_Mode_Master
 #define FLASH_SPI_NSS						 SPI_NSS_Soft
-#define FLASH_SPI_JEDEC					 0x9F
-#define FLASH_DUMMY					 		 0xff
 
 /*****************************************/
 
-void 			Flash_Init(void);
-uint32_t  Flash_Read_WRITE_JEDEC_ID(void);
-uint32_t  SPI_FLASH_ReadID(void);
+// Flash Command
+/*****************************************/
+#define FLASH_DUMMY					 		 0xFF
+#define FLASH_SPI_JEDEC					 0x9F
+#define FLASH_WRITE_EN					 0x06
+#define FLASH_READ_STATUS_REG		 0x05
+#define FLASH_POWER_DOWN   			 0xB9
+#define FLASH_RELEASE_POWER_DOWN 0xAB
+#define FLASH_ERASE_SECTOR			 0x20
+#define FLASH_READ_DATA					 0x03
+#define FLASH_PAGE_PROGRAME			 0x02
+
+/*****************************************/
+
+// Functions
+/*****************************************/
+void 														 Flash_Init(void);
+uint32_t  											 Flash_Read_WRITE_JEDEC_ID(void);
+uint32_t  											 SPI_FLASH_ReadID(void);
+void  													 Flash_Write_Enable(void);
+void 														 Flash_Wait_For_Ready(void);
+void 														 Flash_Power_Down(void);
+uint32_t  											 Flash_Release_Power_Down(void);
+void 														 Flash_Erase_Sector(uint32_t addr);
+void 														 Flash_Read_Data(uint32_t addr, uint8_t* buffer, uint32_t count);
+void 														 Flash_Write_Data(uint32_t addr, uint8_t* data, int count);
+
+/*****************************************/
 
 #endif /* __BSP_SPI_H_ */
