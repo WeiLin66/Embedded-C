@@ -27,11 +27,14 @@ Project File Date:  04/14/2022
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-compiling ffunicode.c...
+compiling diskio.c...
+..\User\FATFS\diskio.c(171): warning:  #177-D: variable "result"  was declared but never referenced
+  	int result;
+..\User\FATFS\diskio.c: 1 warning, 0 errors
 linking...
-Program Size: Code=8004 RO-data=560 RW-data=44 ZI-data=9476  
+Program Size: Code=8012 RO-data=560 RW-data=44 ZI-data=9476  
 FromELF: creating hex file...
-"..\Output\HW-test.axf" - 0 Error(s), 0 Warning(s).
+"..\Output\HW-test.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -44,7 +47,7 @@ Package Vendor: Keil
   C:\Keil_v5\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

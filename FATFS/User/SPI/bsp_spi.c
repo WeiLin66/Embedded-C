@@ -213,10 +213,10 @@ void Flash_Read_Data(uint32_t addr, uint8_t* buffer, uint32_t count){
 	FLASH_SPI_CSS_HIGH();
 }
 
- /**
+ /*
   * Read continuous sector
   */
-void FLASH_Read_MutiSector(uint8_t* pBuffer, uint32_t ReadAddr, uint32_t NumByteToRead){
+void FLASH_Read_MutiData(uint8_t* pBuffer, uint32_t ReadAddr, uint32_t NumByteToRead){
   FLASH_SPI_CSS_LOW();
   SPI_FLASH_SendByte(FLASH_READ_DATA);
   SPI_FLASH_SendByte((ReadAddr & 0xFF000000) >> 24);
@@ -244,6 +244,10 @@ void Flash_Write_Data(uint32_t addr, uint8_t* data, int count){
 	SPI_FLASH_SendByte((addr >> 8) & 0xff);
 	SPI_FLASH_SendByte(addr & 0xff);
 	
+	if(count > SPI_FLASH_PageSize){
+		count = SPI_FLASH_PageSize;
+	}
+	
 	while(count--){
 		SPI_FLASH_SendByte(*data);
 		data++;
@@ -251,5 +255,77 @@ void Flash_Write_Data(uint32_t addr, uint8_t* data, int count){
 		
 	FLASH_SPI_CSS_HIGH();
 	Flash_Wait_For_Ready();
+}
+
+
+/*
+ * Flash Page Write Muti-Datas
+ */
+void FLASH_Write_MutiData(uint8_t* pBuffer, uint32_t WriteAddr, uint32_t NumByteToWrite){
+  uint8_t NumOfPage = 0, NumOfSingle = 0, Addr = 0, count = 0, temp = 0;
+	
+  Addr = WriteAddr % SPI_FLASH_PageSize;
+	
+	/* 差count個數據值，剛好可以對齊到頁地址 */
+  count = SPI_FLASH_PageSize - Addr;	
+	/* 計算出要寫多少整數頁 */
+  NumOfPage =  NumByteToWrite / SPI_FLASH_PageSize;
+	/* mod運算求余，計算出剩余不滿一頁的字節數 */
+  NumOfSingle = NumByteToWrite % SPI_FLASH_PageSize;
+
+	 /* Addr=0,則WriteAddr 剛好按頁對齊 aligned  */
+  if (Addr == 0) {
+		/* NumByteToWrite < SPI_FLASH_PageSize */
+    if (NumOfPage == 0) {
+      Flash_Write_Data(WriteAddr, pBuffer, NumByteToWrite);
+    }else{ /* NumByteToWrite > SPI_FLASH_PageSize */    
+			/* 先把整數頁都寫了 */
+      while (NumOfPage--){
+        Flash_Write_Data(WriteAddr, pBuffer, SPI_FLASH_PageSize);
+        WriteAddr +=  SPI_FLASH_PageSize;
+        pBuffer += SPI_FLASH_PageSize;
+      }
+			
+			/* 若有多余的不滿一頁的數據，把它寫完 */
+      Flash_Write_Data(WriteAddr, pBuffer, NumOfSingle);
+    }
+  }else{	/* 若地址與 SPI_FLASH_PageSize 不對齊 */
+		/* NumByteToWrite < SPI_FLASH_PageSize */
+    if (NumOfPage == 0){
+			/* 當前頁剩余的count個位置比NumOfSingle小，寫不完 */
+      if (NumOfSingle > count){
+        temp = NumOfSingle - count;
+				
+				/* 先寫滿當前頁 */
+        Flash_Write_Data(WriteAddr, pBuffer, count);
+        WriteAddr +=  count;
+        pBuffer += count;
+				
+				/* 再寫剩余的數據 */
+        Flash_Write_Data(WriteAddr, pBuffer, temp);
+      }else{ /* 當前頁剩余的count個位置能寫完NumOfSingle個數據 */
+        Flash_Write_Data(WriteAddr, pBuffer, NumByteToWrite);
+      }
+    }else{ /* NumByteToWrite > SPI_FLASH_PageSize */
+			/* 地址不對齊多出的count分開處理，不加入這個運算 */
+      NumByteToWrite -= count;
+      NumOfPage =  NumByteToWrite / SPI_FLASH_PageSize;
+      NumOfSingle = NumByteToWrite % SPI_FLASH_PageSize;
+
+      Flash_Write_Data(WriteAddr, pBuffer, count);
+      WriteAddr +=  count;
+      pBuffer += count;
+			
+			/* 把整數頁都寫了 */
+      while (NumOfPage--){
+        Flash_Write_Data(WriteAddr, pBuffer, SPI_FLASH_PageSize);
+        WriteAddr +=  SPI_FLASH_PageSize;
+        pBuffer += SPI_FLASH_PageSize;
+      }if (NumOfSingle != 0) /* 若有多余的不滿一頁的數據，把它寫完 */
+      {
+        Flash_Write_Data(WriteAddr, pBuffer, NumOfSingle);
+      }
+    }
+  }
 }
 	

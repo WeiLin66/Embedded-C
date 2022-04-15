@@ -109,7 +109,7 @@ DRESULT disk_read (
 
 	case SPI_FLASH :
 		sector += 4096; /* Flash offset */
-		FLASH_Read_MutiSector(buff, sector << 12, count << 12); /* re-caculate address & count */
+		FLASH_Read_MutiData(buff, sector << 12, count << 12); /* re-caculate address & count */
 		res = RES_OK;
 	break;
 	
@@ -133,31 +133,25 @@ DRESULT disk_write (
 	UINT count			/* Number of sectors to write */
 )
 {
-	DRESULT res;
-	int result;
+	uint32_t addr;
+	DRESULT res = RES_PARERR;
 
 	switch (pdrv) {
 
-	case DEV_MMC :
-		// translate the arguments here
-
-//		result = MMC_disk_write(buff, sector, count);
-
-		// translate the reslut code here
-
-		return res;
+	case DEV_MMC : /* SD Card */
+	break;
 
 	case SPI_FLASH :
-		// translate the arguments here
-
-//		result = USB_disk_write(buff, sector, count);
-
-		// translate the reslut code here
-
-		return res;
+		sector += 4096; /* Flash offset */
+		addr = sector << 12;
+		Flash_Erase_Sector(addr);
+		FLASH_Write_MutiData((uint8_t*)buff, addr, count << 12);
+		res = RES_OK;
+	break;
+	
 	}
 
-	return RES_PARERR;
+	return res;
 }
 
 #endif
@@ -174,7 +168,6 @@ DRESULT disk_ioctl (
 )
 {
 	DRESULT res;
-	int result;
 
 	switch (pdrv) {
 
