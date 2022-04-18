@@ -43,3 +43,6 @@
 ..\output\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\time.h
 ..\output\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 ..\output\main.o: ..\User\SPI\bsp_spi.h
+..\output\main.o: ..\User\FATFS\ff.h
+..\output\main.o: ..\User\FATFS\ffconf.h
+..\output\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h

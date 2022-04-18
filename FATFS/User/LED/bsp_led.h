@@ -12,6 +12,19 @@
 #define LED_PORT 				GPIOH
 #define LED_RCC 				RCC_AHB1Periph_GPIOH
 
+#define LED_RED 				GPIO_ResetBits(LED_PORT, LED_Red_PIN);\
+												GPIO_SetBits(LED_PORT, LED_Blue_PIN);			\
+												GPIO_SetBits(LED_PORT, LED_Green_PIN);
+												
+#define LED_GREEN				GPIO_ResetBits(LED_PORT, LED_Green_PIN);\
+												GPIO_SetBits(LED_PORT, LED_Red_PIN);			    \
+												GPIO_SetBits(LED_PORT, LED_Blue_PIN);
+												
+#define LED_BLUE				GPIO_ResetBits(LED_PORT, LED_Blue_PIN);\
+												GPIO_SetBits(LED_PORT, LED_Red_PIN);			   \
+												GPIO_SetBits(LED_PORT, LED_Green_PIN);												
+
+
 extern uint32_t led_flash_count;
 extern void GPIO_flash_Init(void);
 extern void GPIO_Flash(void);

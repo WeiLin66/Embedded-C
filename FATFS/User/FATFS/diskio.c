@@ -167,24 +167,35 @@ DRESULT disk_ioctl (
 	void *buff		/* Buffer to send/receive control data */
 )
 {
-	DRESULT res;
+	DRESULT res = RES_PARERR;
 
 	switch (pdrv) {
 
-	case DEV_MMC :
-
-		// Process of the command for the MMC/SD card
-
-		return res;
+	case DEV_MMC : /* SD Card */
+	break;
 
 	case SPI_FLASH :
+		
+			switch (cmd) {
+        /* 扇區數量：4096*4096/1024/1024=16(MB) */
+        case GET_SECTOR_COUNT:
+          *(DWORD * )buff = 4096;		
+        break;
+        /* 扇區大小  */
+        case GET_SECTOR_SIZE :
+          *(WORD * )buff = 4096;
+        break;
+        /* 同時擦除扇區個數 */
+        case GET_BLOCK_SIZE :
+          *(DWORD * )buff = 1;
+        break;        
+      }
 
-		// Process of the command the USB drive
-
-		return res;
+			res = RES_OK;
+		break;
 	}
 
-	return RES_PARERR;
+	return res;
 }
 
 

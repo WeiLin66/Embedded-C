@@ -2,37 +2,82 @@
 #include "bsp_usart.h"
 #include "bsp_led.h"
 #include "bsp_spi.h"
+#include "ff.h"
+#include "stdlib.h"
 
 uint32_t id = 0;
-uint8_t buf[4096] = {0};
-uint8_t data[4096] = {0};
-	
-int main(void){
-  /* Init() */  
-	USART_CFG();	
-	Flash_Init();
-	
-	for(int i=0; i<256; i++){
-		data[i] = i;
-	}
-	
-	DEBUG_PRINT("[SPI][FLASH W25Q256JV READ JEDEC ID TEST]\n");
+uint8_t data[FF_MAX_SS] = {0};
+BYTE 		work[FF_MAX_SS];
+uint8_t test[] = "this is a test string!";
 
-	/* Confirm Flash ID */
-	id = Flash_Read_WRITE_JEDEC_ID();
-	DEBUG_PRINT("[SPI][FLASH W25Q256JV JEDEC ID: 0x%X]\n", id);
+FRESULT res_flash;
+FATFS fs;
+FIL fnew;
+UINT bw;
 	
-	Flash_Erase_Sector(0x00);
-	Flash_Write_Data(0x00, data, 256);
-	Flash_Read_Data(0x00, buf, 4096);
+int main(void){	
+  /* LED Init() */  
+	GPIO_flash_Init();
+	LED_BLUE;
 	
-	DEBUG_PRINT("[SPI][FLASH W25Q256JV READ TEST][FINISH]\n\n");
-	for(int i=0; i<16; i++){
-		for(int j=0; j<256; j++){
-			DEBUG_PRINT("0x%X ", buf[256*i+j]);
+	/* USART Init() */
+	USART_CFG();
+	DEBUG_PRINT("************FATFS file system test************\n");
+	
+	/* mount file system at external flash */
+	res_flash = f_mount(&fs, "1:", 1);
+	DEBUG_PRINT("[FATFS] [res_flash: %d]\n", res_flash);
+	
+	if(res_flash == FR_NO_FILESYSTEM){
+		/* disk format */
+		#if 1
+		res_flash = f_mkfs("1:", 0, work, FF_MAX_SS);
+		
+		if(res_flash == FR_OK){
+			DEBUG_PRINT("[FATFS] [format success!]\n");
+			res_flash = f_mount(NULL, "1:", 1);
+			res_flash = f_mount(&fs, "1:", 1);
 		}
-		DEBUG_PRINT("\r\n");
+		#endif
+		LED_RED;
+		DEBUG_PRINT("[FATFS] [No file system!]\n");
+	}else if(res_flash != FR_OK){
+		DEBUG_PRINT("[FATFS] [format fail!]\n");
+	}else{
+		LED_GREEN;
+		DEBUG_PRINT("[FATFS] [already format!]\n");
 	}
+	
+	/* FATFS writing test */
+	DEBUG_PRINT("************FATFS file system writing test************\n");
+	res_flash = f_open(&fnew, "1:FATFS.txt", FA_WRITE|FA_CREATE_ALWAYS);
+	
+	if(res_flash == FR_OK){
+		DEBUG_PRINT("[FATFS] [start writing...]\n");
+		res_flash = f_write(&fnew, test, sizeof(test), &bw);
+		if(res_flash == FR_OK){
+			DEBUG_PRINT("[FATFS] [finish writing!]\n");
+		}
+		f_close(&fnew);
+	}else{
+		DEBUG_PRINT("[FATFS] [error: %d]\n", res_flash);
+	}
+	
+	/* FATFS reading test */
+	DEBUG_PRINT("************FATFS file system reading test************\n");
+	res_flash = f_open(&fnew, "1:FATFS.txt", FA_READ|FA_OPEN_ALWAYS);
+	if(res_flash == FR_OK){
+		res_flash = f_read(&fnew, data, FF_MAX_SS, &bw);
+		if(res_flash == FR_OK){
+			DEBUG_PRINT("[FATFS] [read file: FATFS.txt][content: %s]\n", data);
+		}
+		f_close(&fnew);
+	}else{
+		DEBUG_PRINT("[FATFS] [error: %d]\n", res_flash);
+	}
+	
+	f_mount(NULL, "1:", 1);
+	
 	/* Infinite loop */
   while (1){
 

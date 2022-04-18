@@ -9,6 +9,7 @@
 extern "C" {
 #endif
 
+#include "stdio.h"
 #include "ff.h"
 
 /* Status of Disk Functions */

@@ -3,6 +3,7 @@
 ..\output\diskio.o: ..\User\FATFS\ffconf.h
 ..\output\diskio.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\output\diskio.o: ..\User\FATFS\diskio.h
+..\output\diskio.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\output\diskio.o: ..\User\SPI\bsp_spi.h
 ..\output\diskio.o: ..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 ..\output\diskio.o: ..\Libraries\CMSIS\Include\core_cm4.h
