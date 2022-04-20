@@ -505,6 +505,7 @@ Section Cross References
     ff.o(i.f_write) refers to memcpya.o(.text) for __aeabi_memcpy
     ff.o(i.f_write) refers to diskio.o(i.disk_read) for disk_read
     ff.o(i.find_volume) refers to ff.o(i.check_fs) for check_fs
+    ff.o(i.find_volume) refers to printf3.o(i.__0printf$3) for __2printf
     ff.o(i.find_volume) refers to ff.o(i.ld_dword) for ld_dword
     ff.o(i.follow_path) refers to ff.o(i.dir_sdi) for dir_sdi
     ff.o(i.follow_path) refers to ff.o(i.create_name) for create_name
@@ -849,7 +850,7 @@ Section Cross References
 
 Removing Unused input sections from the image.
 
-    Removing startup_stm32f429_439xx.o(HEAP), (512 bytes).
+    Removing startup_stm32f429_439xx.o(HEAP), (8192 bytes).
     Removing system_stm32f4xx.o(.rev16_text), (4 bytes).
     Removing system_stm32f4xx.o(.revsh_text), (4 bytes).
     Removing system_stm32f4xx.o(.rrx_text), (6 bytes).
@@ -1722,7 +1723,7 @@ Removing Unused input sections from the image.
     Removing dfixul.o(.text), (48 bytes).
     Removing cdrcmple.o(.text), (48 bytes).
 
-872 unused section(s) (total 40750 bytes) removed from the image.
+872 unused section(s) (total 48430 bytes) removed from the image.
 
 ==============================================================================
 
@@ -2035,89 +2036,89 @@ Image Symbol Table
     i.dir_sdi                                0x08002acc   Section        0  ff.o(i.dir_sdi)
     dir_sdi                                  0x08002acd   Thumb Code   166  ff.o(i.dir_sdi)
     i.disk_initialize                        0x08002b72   Section        0  diskio.o(i.disk_initialize)
-    i.disk_ioctl                             0x08002baa   Section        0  diskio.o(i.disk_ioctl)
-    i.disk_read                              0x08002be8   Section        0  diskio.o(i.disk_read)
-    i.disk_status                            0x08002c1c   Section        0  diskio.o(i.disk_status)
-    i.disk_write                             0x08002c48   Section        0  diskio.o(i.disk_write)
-    i.f_close                                0x08002c88   Section        0  ff.o(i.f_close)
-    i.f_mkfs                                 0x08002cac   Section        0  ff.o(i.f_mkfs)
-    i.f_mount                                0x0800339c   Section        0  ff.o(i.f_mount)
-    i.f_open                                 0x080033f0   Section        0  ff.o(i.f_open)
-    i.f_read                                 0x080035fa   Section        0  ff.o(i.f_read)
-    i.f_sync                                 0x080037c8   Section        0  ff.o(i.f_sync)
-    i.f_write                                0x08003868   Section        0  ff.o(i.f_write)
-    i.ff_oem2uni                             0x08003a7c   Section        0  ffunicode.o(i.ff_oem2uni)
-    i.ff_uni2oem                             0x08003aa8   Section        0  ffunicode.o(i.ff_uni2oem)
-    i.ff_wtoupper                            0x08003ae8   Section        0  ffunicode.o(i.ff_wtoupper)
-    i.find_volume                            0x08003b98   Section        0  ff.o(i.find_volume)
-    find_volume                              0x08003b99   Thumb Code   120  ff.o(i.find_volume)
-    i.follow_path                            0x08003c10   Section        0  ff.o(i.follow_path)
-    follow_path                              0x08003c11   Thumb Code   168  ff.o(i.follow_path)
-    i.fputc                                  0x08003cb8   Section        0  bsp_usart.o(i.fputc)
-    i.gen_numname                            0x08003cdc   Section        0  ff.o(i.gen_numname)
-    gen_numname                              0x08003cdd   Thumb Code   206  ff.o(i.gen_numname)
-    i.get_fat                                0x08003db0   Section        0  ff.o(i.get_fat)
-    get_fat                                  0x08003db1   Thumb Code   306  ff.o(i.get_fat)
-    i.get_fattime                            0x08003ee4   Section        0  diskio.o(i.get_fattime)
-    i.get_ldnumber                           0x08003eec   Section        0  ff.o(i.get_ldnumber)
-    get_ldnumber                             0x08003eed   Thumb Code    78  ff.o(i.get_ldnumber)
-    i.ld_clust                               0x08003f3a   Section        0  ff.o(i.ld_clust)
-    ld_clust                                 0x08003f3b   Thumb Code    38  ff.o(i.ld_clust)
-    i.ld_dword                               0x08003f60   Section        0  ff.o(i.ld_dword)
-    ld_dword                                 0x08003f61   Thumb Code    24  ff.o(i.ld_dword)
-    i.ld_word                                0x08003f78   Section        0  ff.o(i.ld_word)
-    ld_word                                  0x08003f79   Thumb Code    12  ff.o(i.ld_word)
-    i.main                                   0x08003f84   Section        0  main.o(i.main)
-    i.mount_volume                           0x080042e4   Section        0  ff.o(i.mount_volume)
-    mount_volume                             0x080042e5   Thumb Code   736  ff.o(i.mount_volume)
-    i.move_window                            0x080045d8   Section        0  ff.o(i.move_window)
-    move_window                              0x080045d9   Thumb Code    52  ff.o(i.move_window)
-    i.put_fat                                0x0800460c   Section        0  ff.o(i.put_fat)
-    put_fat                                  0x0800460d   Thumb Code   400  ff.o(i.put_fat)
-    i.put_lfn                                0x0800479c   Section        0  ff.o(i.put_lfn)
-    put_lfn                                  0x0800479d   Thumb Code   124  ff.o(i.put_lfn)
-    i.remove_chain                           0x0800481c   Section        0  ff.o(i.remove_chain)
-    remove_chain                             0x0800481d   Thumb Code   154  ff.o(i.remove_chain)
-    i.st_clust                               0x080048b6   Section        0  ff.o(i.st_clust)
-    st_clust                                 0x080048b7   Thumb Code    36  ff.o(i.st_clust)
-    i.st_dword                               0x080048da   Section        0  ff.o(i.st_dword)
-    st_dword                                 0x080048db   Thumb Code    24  ff.o(i.st_dword)
-    i.st_word                                0x080048f2   Section        0  ff.o(i.st_word)
-    st_word                                  0x080048f3   Thumb Code    12  ff.o(i.st_word)
-    i.sum_sfn                                0x080048fe   Section        0  ff.o(i.sum_sfn)
-    sum_sfn                                  0x080048ff   Thumb Code    32  ff.o(i.sum_sfn)
-    i.sync_fs                                0x08004920   Section        0  ff.o(i.sync_fs)
-    sync_fs                                  0x08004921   Thumb Code   132  ff.o(i.sync_fs)
-    i.sync_window                            0x080049ac   Section        0  ff.o(i.sync_window)
-    sync_window                              0x080049ad   Thumb Code    74  ff.o(i.sync_window)
-    i.tchar2uni                              0x080049f6   Section        0  ff.o(i.tchar2uni)
-    tchar2uni                                0x080049f7   Thumb Code    76  ff.o(i.tchar2uni)
-    i.validate                               0x08004a42   Section        0  ff.o(i.validate)
-    validate                                 0x08004a43   Thumb Code    60  ff.o(i.validate)
-    .constdata                               0x08004a80   Section      188  ff.o(.constdata)
-    LfnOfs                                   0x08004a80   Data          13  ff.o(.constdata)
-    ExCvt                                    0x08004a8d   Data         128  ff.o(.constdata)
-    cst                                      0x08004b0e   Data          14  ff.o(.constdata)
-    cst32                                    0x08004b1c   Data          14  ff.o(.constdata)
-    defopt                                   0x08004b2c   Data          16  ff.o(.constdata)
-    .constdata                               0x08004b3c   Section      942  ffunicode.o(.constdata)
-    uc437                                    0x08004b3c   Data         256  ffunicode.o(.constdata)
-    cvt1                                     0x08004c3c   Data         498  ffunicode.o(.constdata)
-    cvt2                                     0x08004e2e   Data         188  ffunicode.o(.constdata)
-    .constdata                               0x08004eea   Section       64  ctype_c.o(.constdata)
-    .conststring                             0x08004f2c   Section       34  bsp_usart.o(.conststring)
+    i.disk_ioctl                             0x08002ba2   Section        0  diskio.o(i.disk_ioctl)
+    i.disk_read                              0x08002bd8   Section        0  diskio.o(i.disk_read)
+    i.disk_status                            0x08002c04   Section        0  diskio.o(i.disk_status)
+    i.disk_write                             0x08002c28   Section        0  diskio.o(i.disk_write)
+    i.f_close                                0x08002c60   Section        0  ff.o(i.f_close)
+    i.f_mkfs                                 0x08002c84   Section        0  ff.o(i.f_mkfs)
+    i.f_mount                                0x08003374   Section        0  ff.o(i.f_mount)
+    i.f_open                                 0x080033c8   Section        0  ff.o(i.f_open)
+    i.f_read                                 0x080035d2   Section        0  ff.o(i.f_read)
+    i.f_sync                                 0x080037a0   Section        0  ff.o(i.f_sync)
+    i.f_write                                0x08003840   Section        0  ff.o(i.f_write)
+    i.ff_oem2uni                             0x08003a54   Section        0  ffunicode.o(i.ff_oem2uni)
+    i.ff_uni2oem                             0x08003a80   Section        0  ffunicode.o(i.ff_uni2oem)
+    i.ff_wtoupper                            0x08003ac0   Section        0  ffunicode.o(i.ff_wtoupper)
+    i.find_volume                            0x08003b70   Section        0  ff.o(i.find_volume)
+    find_volume                              0x08003b71   Thumb Code   134  ff.o(i.find_volume)
+    i.follow_path                            0x08003c34   Section        0  ff.o(i.follow_path)
+    follow_path                              0x08003c35   Thumb Code   168  ff.o(i.follow_path)
+    i.fputc                                  0x08003cdc   Section        0  bsp_usart.o(i.fputc)
+    i.gen_numname                            0x08003d00   Section        0  ff.o(i.gen_numname)
+    gen_numname                              0x08003d01   Thumb Code   206  ff.o(i.gen_numname)
+    i.get_fat                                0x08003dd4   Section        0  ff.o(i.get_fat)
+    get_fat                                  0x08003dd5   Thumb Code   306  ff.o(i.get_fat)
+    i.get_fattime                            0x08003f08   Section        0  diskio.o(i.get_fattime)
+    i.get_ldnumber                           0x08003f10   Section        0  ff.o(i.get_ldnumber)
+    get_ldnumber                             0x08003f11   Thumb Code    78  ff.o(i.get_ldnumber)
+    i.ld_clust                               0x08003f5e   Section        0  ff.o(i.ld_clust)
+    ld_clust                                 0x08003f5f   Thumb Code    38  ff.o(i.ld_clust)
+    i.ld_dword                               0x08003f84   Section        0  ff.o(i.ld_dword)
+    ld_dword                                 0x08003f85   Thumb Code    24  ff.o(i.ld_dword)
+    i.ld_word                                0x08003f9c   Section        0  ff.o(i.ld_word)
+    ld_word                                  0x08003f9d   Thumb Code    12  ff.o(i.ld_word)
+    i.main                                   0x08003fa8   Section        0  main.o(i.main)
+    i.mount_volume                           0x080042a4   Section        0  ff.o(i.mount_volume)
+    mount_volume                             0x080042a5   Thumb Code   736  ff.o(i.mount_volume)
+    i.move_window                            0x08004598   Section        0  ff.o(i.move_window)
+    move_window                              0x08004599   Thumb Code    52  ff.o(i.move_window)
+    i.put_fat                                0x080045cc   Section        0  ff.o(i.put_fat)
+    put_fat                                  0x080045cd   Thumb Code   400  ff.o(i.put_fat)
+    i.put_lfn                                0x0800475c   Section        0  ff.o(i.put_lfn)
+    put_lfn                                  0x0800475d   Thumb Code   124  ff.o(i.put_lfn)
+    i.remove_chain                           0x080047dc   Section        0  ff.o(i.remove_chain)
+    remove_chain                             0x080047dd   Thumb Code   154  ff.o(i.remove_chain)
+    i.st_clust                               0x08004876   Section        0  ff.o(i.st_clust)
+    st_clust                                 0x08004877   Thumb Code    36  ff.o(i.st_clust)
+    i.st_dword                               0x0800489a   Section        0  ff.o(i.st_dword)
+    st_dword                                 0x0800489b   Thumb Code    24  ff.o(i.st_dword)
+    i.st_word                                0x080048b2   Section        0  ff.o(i.st_word)
+    st_word                                  0x080048b3   Thumb Code    12  ff.o(i.st_word)
+    i.sum_sfn                                0x080048be   Section        0  ff.o(i.sum_sfn)
+    sum_sfn                                  0x080048bf   Thumb Code    32  ff.o(i.sum_sfn)
+    i.sync_fs                                0x080048e0   Section        0  ff.o(i.sync_fs)
+    sync_fs                                  0x080048e1   Thumb Code   132  ff.o(i.sync_fs)
+    i.sync_window                            0x0800496c   Section        0  ff.o(i.sync_window)
+    sync_window                              0x0800496d   Thumb Code    74  ff.o(i.sync_window)
+    i.tchar2uni                              0x080049b6   Section        0  ff.o(i.tchar2uni)
+    tchar2uni                                0x080049b7   Thumb Code    76  ff.o(i.tchar2uni)
+    i.validate                               0x08004a02   Section        0  ff.o(i.validate)
+    validate                                 0x08004a03   Thumb Code    60  ff.o(i.validate)
+    .constdata                               0x08004a40   Section      188  ff.o(.constdata)
+    LfnOfs                                   0x08004a40   Data          13  ff.o(.constdata)
+    ExCvt                                    0x08004a4d   Data         128  ff.o(.constdata)
+    cst                                      0x08004ace   Data          14  ff.o(.constdata)
+    cst32                                    0x08004adc   Data          14  ff.o(.constdata)
+    defopt                                   0x08004aec   Data          16  ff.o(.constdata)
+    .constdata                               0x08004afc   Section      942  ffunicode.o(.constdata)
+    uc437                                    0x08004afc   Data         256  ffunicode.o(.constdata)
+    cvt1                                     0x08004bfc   Data         498  ffunicode.o(.constdata)
+    cvt2                                     0x08004dee   Data         188  ffunicode.o(.constdata)
+    .constdata                               0x08004eaa   Section       64  ctype_c.o(.constdata)
+    .conststring                             0x08004eec   Section       34  bsp_usart.o(.conststring)
     .data                                    0x20000000   Section       16  stm32f4xx_rcc.o(.data)
     APBAHBPrescTable                         0x20000000   Data          16  stm32f4xx_rcc.o(.data)
     .data                                    0x20000010   Section       32  main.o(.data)
     .data                                    0x20000030   Section       20  bsp_usart.o(.data)
     cmd_count                                0x20000030   Data           1  bsp_usart.o(.data)
-    .data                                    0x20000044   Section       10  ff.o(.data)
-    FatFs                                    0x20000044   Data           8  ff.o(.data)
-    Fsid                                     0x2000004c   Data           2  ff.o(.data)
-    .data                                    0x20000050   Section        4  stdout.o(.data)
-    .bss                                     0x20000054   Section    16480  main.o(.bss)
-    .bss                                     0x200040b4   Section      256  bsp_usart.o(.bss)
-    STACK                                    0x200041b8   Section     1024  startup_stm32f429_439xx.o(STACK)
+    .data                                    0x20000044   Section        6  ff.o(.data)
+    FatFs                                    0x20000044   Data           4  ff.o(.data)
+    Fsid                                     0x20000048   Data           2  ff.o(.data)
+    .data                                    0x2000004c   Section        4  stdout.o(.data)
+    .bss                                     0x20000050   Section    16480  main.o(.bss)
+    .bss                                     0x200040b0   Section      256  bsp_usart.o(.bss)
+    STACK                                    0x200041b0   Section     4096  startup_stm32f429_439xx.o(STACK)
 
     Global Symbols
 
@@ -2374,27 +2375,27 @@ Image Symbol Table
     _is_digit                                0x08001d13   Thumb Code    14  scanf_fp.o(i._is_digit)
     cmd_receive                              0x08001fd5   Thumb Code    60  bsp_usart.o(i.cmd_receive)
     console_cmd                              0x080020b1   Thumb Code   242  bsp_usart.o(i.console_cmd)
-    disk_initialize                          0x08002b73   Thumb Code    56  diskio.o(i.disk_initialize)
-    disk_ioctl                               0x08002bab   Thumb Code    62  diskio.o(i.disk_ioctl)
-    disk_read                                0x08002be9   Thumb Code    50  diskio.o(i.disk_read)
-    disk_status                              0x08002c1d   Thumb Code    38  diskio.o(i.disk_status)
-    disk_write                               0x08002c49   Thumb Code    64  diskio.o(i.disk_write)
-    f_close                                  0x08002c89   Thumb Code    34  ff.o(i.f_close)
-    f_mkfs                                   0x08002cad   Thumb Code  1722  ff.o(i.f_mkfs)
-    f_mount                                  0x0800339d   Thumb Code    80  ff.o(i.f_mount)
-    f_open                                   0x080033f1   Thumb Code   522  ff.o(i.f_open)
-    f_read                                   0x080035fb   Thumb Code   462  ff.o(i.f_read)
-    f_sync                                   0x080037c9   Thumb Code   160  ff.o(i.f_sync)
-    f_write                                  0x08003869   Thumb Code   532  ff.o(i.f_write)
-    ff_oem2uni                               0x08003a7d   Thumb Code    38  ffunicode.o(i.ff_oem2uni)
-    ff_uni2oem                               0x08003aa9   Thumb Code    58  ffunicode.o(i.ff_uni2oem)
-    ff_wtoupper                              0x08003ae9   Thumb Code   166  ffunicode.o(i.ff_wtoupper)
-    fputc                                    0x08003cb9   Thumb Code    32  bsp_usart.o(i.fputc)
-    get_fattime                              0x08003ee5   Thumb Code     4  diskio.o(i.get_fattime)
-    main                                     0x08003f85   Thumb Code   390  main.o(i.main)
-    __ctype_categories                       0x08004eea   Data          64  ctype_c.o(.constdata)
-    Region$$Table$$Base                      0x08004f50   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08004f70   Number         0  anon$$obj.o(Region$$Table)
+    disk_initialize                          0x08002b73   Thumb Code    48  diskio.o(i.disk_initialize)
+    disk_ioctl                               0x08002ba3   Thumb Code    54  diskio.o(i.disk_ioctl)
+    disk_read                                0x08002bd9   Thumb Code    42  diskio.o(i.disk_read)
+    disk_status                              0x08002c05   Thumb Code    30  diskio.o(i.disk_status)
+    disk_write                               0x08002c29   Thumb Code    56  diskio.o(i.disk_write)
+    f_close                                  0x08002c61   Thumb Code    34  ff.o(i.f_close)
+    f_mkfs                                   0x08002c85   Thumb Code  1722  ff.o(i.f_mkfs)
+    f_mount                                  0x08003375   Thumb Code    80  ff.o(i.f_mount)
+    f_open                                   0x080033c9   Thumb Code   522  ff.o(i.f_open)
+    f_read                                   0x080035d3   Thumb Code   462  ff.o(i.f_read)
+    f_sync                                   0x080037a1   Thumb Code   160  ff.o(i.f_sync)
+    f_write                                  0x08003841   Thumb Code   532  ff.o(i.f_write)
+    ff_oem2uni                               0x08003a55   Thumb Code    38  ffunicode.o(i.ff_oem2uni)
+    ff_uni2oem                               0x08003a81   Thumb Code    58  ffunicode.o(i.ff_uni2oem)
+    ff_wtoupper                              0x08003ac1   Thumb Code   166  ffunicode.o(i.ff_wtoupper)
+    fputc                                    0x08003cdd   Thumb Code    32  bsp_usart.o(i.fputc)
+    get_fattime                              0x08003f09   Thumb Code     4  diskio.o(i.get_fattime)
+    main                                     0x08003fa9   Thumb Code   338  main.o(i.main)
+    __ctype_categories                       0x08004eaa   Data          64  ctype_c.o(.constdata)
+    Region$$Table$$Base                      0x08004f10   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08004f30   Number         0  anon$$obj.o(Region$$Table)
     id                                       0x20000010   Data           4  main.o(.data)
     test                                     0x20000014   Data          23  main.o(.data)
     res_flash                                0x2000002b   Data           1  main.o(.data)
@@ -2402,13 +2403,13 @@ Image Symbol Table
     led_control                              0x20000031   Data           1  bsp_usart.o(.data)
     action                                   0x20000032   Data           1  bsp_usart.o(.data)
     table                                    0x20000034   Data          16  bsp_usart.o(.data)
-    __stdout                                 0x20000050   Data           4  stdout.o(.data)
-    data                                     0x20000054   Data        4096  main.o(.bss)
-    work                                     0x20001054   Data        4096  main.o(.bss)
-    fs                                       0x20002054   Data        4152  main.o(.bss)
-    fnew                                     0x2000308c   Data        4136  main.o(.bss)
-    cmd                                      0x200040b4   Data         256  bsp_usart.o(.bss)
-    __initial_sp                             0x200045b8   Data           0  startup_stm32f429_439xx.o(STACK)
+    __stdout                                 0x2000004c   Data           4  stdout.o(.data)
+    data                                     0x20000050   Data        4096  main.o(.bss)
+    work                                     0x20001050   Data        4096  main.o(.bss)
+    fs                                       0x20002050   Data        4152  main.o(.bss)
+    fnew                                     0x20003088   Data        4136  main.o(.bss)
+    cmd                                      0x200040b0   Data         256  bsp_usart.o(.bss)
+    __initial_sp                             0x200051b0   Data           0  startup_stm32f429_439xx.o(STACK)
 
 
 
@@ -2418,9 +2419,9 @@ Memory Map of the image
 
   Image Entry point : 0x080001ad
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00004fc4, Max: 0x00100000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00004f80, Max: 0x00100000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00004f70, Max: 0x00100000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00004f30, Max: 0x00100000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -2549,73 +2550,72 @@ Memory Map of the image
     0x080028ac   0x080028ac   0x000000da   Code   RO         5688    i.dir_next          ff.o
     0x08002986   0x08002986   0x00000146   Code   RO         5690    i.dir_register      ff.o
     0x08002acc   0x08002acc   0x000000a6   Code   RO         5692    i.dir_sdi           ff.o
-    0x08002b72   0x08002b72   0x00000038   Code   RO         5620    i.disk_initialize   diskio.o
-    0x08002baa   0x08002baa   0x0000003e   Code   RO         5621    i.disk_ioctl        diskio.o
-    0x08002be8   0x08002be8   0x00000032   Code   RO         5622    i.disk_read         diskio.o
-    0x08002c1a   0x08002c1a   0x00000002   PAD
-    0x08002c1c   0x08002c1c   0x0000002c   Code   RO         5623    i.disk_status       diskio.o
-    0x08002c48   0x08002c48   0x00000040   Code   RO         5624    i.disk_write        diskio.o
-    0x08002c88   0x08002c88   0x00000022   Code   RO         5693    i.f_close           ff.o
-    0x08002caa   0x08002caa   0x00000002   PAD
-    0x08002cac   0x08002cac   0x000006f0   Code   RO         5698    i.f_mkfs            ff.o
-    0x0800339c   0x0800339c   0x00000054   Code   RO         5699    i.f_mount           ff.o
-    0x080033f0   0x080033f0   0x0000020a   Code   RO         5700    i.f_open            ff.o
-    0x080035fa   0x080035fa   0x000001ce   Code   RO         5702    i.f_read            ff.o
-    0x080037c8   0x080037c8   0x000000a0   Code   RO         5706    i.f_sync            ff.o
-    0x08003868   0x08003868   0x00000214   Code   RO         5709    i.f_write           ff.o
-    0x08003a7c   0x08003a7c   0x0000002c   Code   RO         6004    i.ff_oem2uni        ffunicode.o
-    0x08003aa8   0x08003aa8   0x00000040   Code   RO         6005    i.ff_uni2oem        ffunicode.o
-    0x08003ae8   0x08003ae8   0x000000b0   Code   RO         6006    i.ff_wtoupper       ffunicode.o
-    0x08003b98   0x08003b98   0x00000078   Code   RO         5710    i.find_volume       ff.o
-    0x08003c10   0x08003c10   0x000000a8   Code   RO         5711    i.follow_path       ff.o
-    0x08003cb8   0x08003cb8   0x00000024   Code   RO         5383    i.fputc             bsp_usart.o
-    0x08003cdc   0x08003cdc   0x000000d4   Code   RO         5712    i.gen_numname       ff.o
-    0x08003db0   0x08003db0   0x00000132   Code   RO         5713    i.get_fat           ff.o
-    0x08003ee2   0x08003ee2   0x00000002   PAD
-    0x08003ee4   0x08003ee4   0x00000008   Code   RO         5625    i.get_fattime       diskio.o
-    0x08003eec   0x08003eec   0x0000004e   Code   RO         5715    i.get_ldnumber      ff.o
-    0x08003f3a   0x08003f3a   0x00000026   Code   RO         5716    i.ld_clust          ff.o
-    0x08003f60   0x08003f60   0x00000018   Code   RO         5717    i.ld_dword          ff.o
-    0x08003f78   0x08003f78   0x0000000c   Code   RO         5718    i.ld_word           ff.o
-    0x08003f84   0x08003f84   0x00000360   Code   RO         5230    i.main              main.o
-    0x080042e4   0x080042e4   0x000002f4   Code   RO         5719    i.mount_volume      ff.o
-    0x080045d8   0x080045d8   0x00000034   Code   RO         5720    i.move_window       ff.o
-    0x0800460c   0x0800460c   0x00000190   Code   RO         5722    i.put_fat           ff.o
-    0x0800479c   0x0800479c   0x00000080   Code   RO         5723    i.put_lfn           ff.o
-    0x0800481c   0x0800481c   0x0000009a   Code   RO         5725    i.remove_chain      ff.o
-    0x080048b6   0x080048b6   0x00000024   Code   RO         5726    i.st_clust          ff.o
-    0x080048da   0x080048da   0x00000018   Code   RO         5727    i.st_dword          ff.o
-    0x080048f2   0x080048f2   0x0000000c   Code   RO         5728    i.st_word           ff.o
-    0x080048fe   0x080048fe   0x00000020   Code   RO         5729    i.sum_sfn           ff.o
-    0x0800491e   0x0800491e   0x00000002   PAD
-    0x08004920   0x08004920   0x0000008c   Code   RO         5730    i.sync_fs           ff.o
-    0x080049ac   0x080049ac   0x0000004a   Code   RO         5731    i.sync_window       ff.o
-    0x080049f6   0x080049f6   0x0000004c   Code   RO         5732    i.tchar2uni         ff.o
-    0x08004a42   0x08004a42   0x0000003c   Code   RO         5733    i.validate          ff.o
-    0x08004a7e   0x08004a7e   0x00000002   PAD
-    0x08004a80   0x08004a80   0x000000bc   Data   RO         5734    .constdata          ff.o
-    0x08004b3c   0x08004b3c   0x000003ae   Data   RO         6007    .constdata          ffunicode.o
-    0x08004eea   0x08004eea   0x00000040   Data   RO         6377    .constdata          mc_w.l(ctype_c.o)
-    0x08004f2a   0x08004f2a   0x00000002   PAD
-    0x08004f2c   0x08004f2c   0x00000022   Data   RO         5385    .conststring        bsp_usart.o
-    0x08004f4e   0x08004f4e   0x00000002   PAD
-    0x08004f50   0x08004f50   0x00000020   Data   RO         6381    Region$$Table       anon$$obj.o
+    0x08002b72   0x08002b72   0x00000030   Code   RO         5620    i.disk_initialize   diskio.o
+    0x08002ba2   0x08002ba2   0x00000036   Code   RO         5621    i.disk_ioctl        diskio.o
+    0x08002bd8   0x08002bd8   0x0000002a   Code   RO         5622    i.disk_read         diskio.o
+    0x08002c02   0x08002c02   0x00000002   PAD
+    0x08002c04   0x08002c04   0x00000024   Code   RO         5623    i.disk_status       diskio.o
+    0x08002c28   0x08002c28   0x00000038   Code   RO         5624    i.disk_write        diskio.o
+    0x08002c60   0x08002c60   0x00000022   Code   RO         5693    i.f_close           ff.o
+    0x08002c82   0x08002c82   0x00000002   PAD
+    0x08002c84   0x08002c84   0x000006f0   Code   RO         5698    i.f_mkfs            ff.o
+    0x08003374   0x08003374   0x00000054   Code   RO         5699    i.f_mount           ff.o
+    0x080033c8   0x080033c8   0x0000020a   Code   RO         5700    i.f_open            ff.o
+    0x080035d2   0x080035d2   0x000001ce   Code   RO         5702    i.f_read            ff.o
+    0x080037a0   0x080037a0   0x000000a0   Code   RO         5706    i.f_sync            ff.o
+    0x08003840   0x08003840   0x00000214   Code   RO         5709    i.f_write           ff.o
+    0x08003a54   0x08003a54   0x0000002c   Code   RO         6004    i.ff_oem2uni        ffunicode.o
+    0x08003a80   0x08003a80   0x00000040   Code   RO         6005    i.ff_uni2oem        ffunicode.o
+    0x08003ac0   0x08003ac0   0x000000b0   Code   RO         6006    i.ff_wtoupper       ffunicode.o
+    0x08003b70   0x08003b70   0x000000c4   Code   RO         5710    i.find_volume       ff.o
+    0x08003c34   0x08003c34   0x000000a8   Code   RO         5711    i.follow_path       ff.o
+    0x08003cdc   0x08003cdc   0x00000024   Code   RO         5383    i.fputc             bsp_usart.o
+    0x08003d00   0x08003d00   0x000000d4   Code   RO         5712    i.gen_numname       ff.o
+    0x08003dd4   0x08003dd4   0x00000132   Code   RO         5713    i.get_fat           ff.o
+    0x08003f06   0x08003f06   0x00000002   PAD
+    0x08003f08   0x08003f08   0x00000008   Code   RO         5625    i.get_fattime       diskio.o
+    0x08003f10   0x08003f10   0x0000004e   Code   RO         5715    i.get_ldnumber      ff.o
+    0x08003f5e   0x08003f5e   0x00000026   Code   RO         5716    i.ld_clust          ff.o
+    0x08003f84   0x08003f84   0x00000018   Code   RO         5717    i.ld_dword          ff.o
+    0x08003f9c   0x08003f9c   0x0000000c   Code   RO         5718    i.ld_word           ff.o
+    0x08003fa8   0x08003fa8   0x000002fc   Code   RO         5230    i.main              main.o
+    0x080042a4   0x080042a4   0x000002f4   Code   RO         5719    i.mount_volume      ff.o
+    0x08004598   0x08004598   0x00000034   Code   RO         5720    i.move_window       ff.o
+    0x080045cc   0x080045cc   0x00000190   Code   RO         5722    i.put_fat           ff.o
+    0x0800475c   0x0800475c   0x00000080   Code   RO         5723    i.put_lfn           ff.o
+    0x080047dc   0x080047dc   0x0000009a   Code   RO         5725    i.remove_chain      ff.o
+    0x08004876   0x08004876   0x00000024   Code   RO         5726    i.st_clust          ff.o
+    0x0800489a   0x0800489a   0x00000018   Code   RO         5727    i.st_dword          ff.o
+    0x080048b2   0x080048b2   0x0000000c   Code   RO         5728    i.st_word           ff.o
+    0x080048be   0x080048be   0x00000020   Code   RO         5729    i.sum_sfn           ff.o
+    0x080048de   0x080048de   0x00000002   PAD
+    0x080048e0   0x080048e0   0x0000008c   Code   RO         5730    i.sync_fs           ff.o
+    0x0800496c   0x0800496c   0x0000004a   Code   RO         5731    i.sync_window       ff.o
+    0x080049b6   0x080049b6   0x0000004c   Code   RO         5732    i.tchar2uni         ff.o
+    0x08004a02   0x08004a02   0x0000003c   Code   RO         5733    i.validate          ff.o
+    0x08004a3e   0x08004a3e   0x00000002   PAD
+    0x08004a40   0x08004a40   0x000000bc   Data   RO         5734    .constdata          ff.o
+    0x08004afc   0x08004afc   0x000003ae   Data   RO         6007    .constdata          ffunicode.o
+    0x08004eaa   0x08004eaa   0x00000040   Data   RO         6377    .constdata          mc_w.l(ctype_c.o)
+    0x08004eea   0x08004eea   0x00000002   PAD
+    0x08004eec   0x08004eec   0x00000022   Data   RO         5385    .conststring        bsp_usart.o
+    0x08004f0e   0x08004f0e   0x00000002   PAD
+    0x08004f10   0x08004f10   0x00000020   Data   RO         6381    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08004f70, Size: 0x000045b8, Max: 0x00030000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08004f30, Size: 0x000051b0, Max: 0x00030000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x08004f70   0x00000010   Data   RW         3076    .data               stm32f4xx_rcc.o
-    0x20000010   0x08004f80   0x00000020   Data   RW         5232    .data               main.o
-    0x20000030   0x08004fa0   0x00000014   Data   RW         5386    .data               bsp_usart.o
-    0x20000044   0x08004fb4   0x0000000a   Data   RW         5735    .data               ff.o
-    0x2000004e   0x08004fbe   0x00000002   PAD
-    0x20000050   0x08004fc0   0x00000004   Data   RW         6326    .data               mc_w.l(stdout.o)
-    0x20000054        -       0x00004060   Zero   RW         5231    .bss                main.o
-    0x200040b4        -       0x00000100   Zero   RW         5384    .bss                bsp_usart.o
-    0x200041b4   0x08004fc4   0x00000004   PAD
-    0x200041b8        -       0x00000400   Zero   RW            1    STACK               startup_stm32f429_439xx.o
+    0x20000000   0x08004f30   0x00000010   Data   RW         3076    .data               stm32f4xx_rcc.o
+    0x20000010   0x08004f40   0x00000020   Data   RW         5232    .data               main.o
+    0x20000030   0x08004f60   0x00000014   Data   RW         5386    .data               bsp_usart.o
+    0x20000044   0x08004f74   0x00000006   Data   RW         5735    .data               ff.o
+    0x2000004a   0x08004f7a   0x00000002   PAD
+    0x2000004c   0x08004f7c   0x00000004   Data   RW         6326    .data               mc_w.l(stdout.o)
+    0x20000050        -       0x00004060   Zero   RW         5231    .bss                main.o
+    0x200040b0        -       0x00000100   Zero   RW         5384    .bss                bsp_usart.o
+    0x200041b0        -       0x00001000   Zero   RW            1    STACK               startup_stm32f429_439xx.o
 
 
 ==============================================================================
@@ -2628,12 +2628,12 @@ Image component sizes
         96          6          0          0          0       1321   bsp_led.o
       1010         56          0          0          0       7772   bsp_spi.o
        678        110         34         20        256      30641   bsp_usart.o
-       284         10          0          0          0       7332   diskio.o
-      9300        170        188         10          0      52162   ff.o
+       244         10          0          0          0       7280   diskio.o
+      9376        232        188          6          0      52170   ff.o
        284         32        942          0          0       2588   ffunicode.o
-       864        474          0         32      16480       5104   main.o
+       764        426          0         32      16480       5088   main.o
        140         24          0          0          0       1651   misc.o
-        36          8        428          0       1024        944   startup_stm32f429_439xx.o
+        36          8        428          0       4096        944   startup_stm32f429_439xx.o
        222          0          0          0          0       3051   stm32f4xx_gpio.o
         70          4          0          0          0       4446   stm32f4xx_it.o
        296         30          0         16          0       4210   stm32f4xx_rcc.o
@@ -2642,9 +2642,9 @@ Image component sizes
        392         32          0          0          0     288329   system_stm32f4xx.o
 
     ----------------------------------------------------------------------
-     14166        964       1626         80      17764     418162   Object Totals
+     14102        978       1626         76      20832     418102   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        28          0          2          2          4          0   (incl. Padding)
+        28          0          2          2          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -2711,15 +2711,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     18644       1034       1692         84      17764     409562   Grand Totals
-     18644       1034       1692         84      17764     409562   ELF Image Totals
-     18644       1034       1692         84          0          0   ROM Totals
+     18580       1048       1692         80      20832     409502   Grand Totals
+     18580       1048       1692         80      20832     409502   ELF Image Totals
+     18580       1048       1692         80          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                20336 (  19.86kB)
-    Total RW  Size (RW Data + ZI Data)             17848 (  17.43kB)
-    Total ROM Size (Code + RO Data + RW Data)      20420 (  19.94kB)
+    Total RO  Size (Code + RO Data)                20272 (  19.80kB)
+    Total RW  Size (RW Data + ZI Data)             20912 (  20.42kB)
+    Total ROM Size (Code + RO Data + RW Data)      20352 (  19.88kB)
 
 ==============================================================================
 

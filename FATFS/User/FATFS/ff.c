@@ -3285,6 +3285,8 @@ static UINT find_volume (	/* Returns BS status found in the hosting drive */
 
 
 	fmt = check_fs(fs, 0);				/* Load sector 0 and check if it is an FAT VBR as SFD format */
+	printf("[FATFS] [fmt: %d]\n", fmt);
+
 	if (fmt != 2 && (fmt >= 3 || part == 0)) return fmt;	/* Returns if it is an FAT VBR as auto scan, not a BS or disk error */
 
 	/* Sector 0 is not an FAT VBR or forced partition number wants a partition */
@@ -3387,10 +3389,12 @@ static FRESULT mount_volume (	/* FR_OK(0): successful, !=0: an error occurred */
 
 	/* Find an FAT volume on the drive */
 	fmt = find_volume(fs, LD2PT(vol));
+	/* print number of fmt */
 	if (fmt == 4) return FR_DISK_ERR;		/* An error occured in the disk I/O layer */
 	if (fmt >= 2) return FR_NO_FILESYSTEM;	/* No FAT volume is found */
 	bsect = fs->winsect;					/* Volume offset */
 
+//	printf("===============================================");
 	/* An FAT volume is found (bsect). Following code initializes the filesystem object */
 
 #if FF_FS_EXFAT

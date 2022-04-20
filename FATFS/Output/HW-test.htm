@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\Output\HW-test.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\Output\HW-test.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Mon Apr 18 23:40:45 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Wed Apr 20 00:00:11 2022
 <BR><P>
 <H3>Maximum Stack Usage =        928 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -977,7 +977,8 @@ Global Symbols
 <P><STRONG><a name="[bd]"></a>__2printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf3.o(i.__0printf$3))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;console_cmd
+<BR>[Called By]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_volume
+<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;console_cmd
 <LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -1013,7 +1014,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cmd_receive
 </UL>
 
-<P><STRONG><a name="[d6]"></a>disk_initialize</STRONG> (Thumb, 56 bytes, Stack size 16 bytes, diskio.o(i.disk_initialize))
+<P><STRONG><a name="[d6]"></a>disk_initialize</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, diskio.o(i.disk_initialize))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = disk_initialize &rArr; disk_status &rArr; Flash_Read_WRITE_JEDEC_ID &rArr; SPI_FLASH_ReadByte &rArr; SPI_FLASH_SendByte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disk_status
@@ -1024,7 +1025,7 @@ Global Symbols
 <LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;f_mkfs
 </UL>
 
-<P><STRONG><a name="[c6]"></a>disk_ioctl</STRONG> (Thumb, 62 bytes, Stack size 8 bytes, diskio.o(i.disk_ioctl))
+<P><STRONG><a name="[c6]"></a>disk_ioctl</STRONG> (Thumb, 54 bytes, Stack size 8 bytes, diskio.o(i.disk_ioctl))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = disk_ioctl
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sync_fs
@@ -1033,7 +1034,7 @@ Global Symbols
 <LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;f_mkfs
 </UL>
 
-<P><STRONG><a name="[d8]"></a>disk_read</STRONG> (Thumb, 50 bytes, Stack size 24 bytes, diskio.o(i.disk_read))
+<P><STRONG><a name="[d8]"></a>disk_read</STRONG> (Thumb, 42 bytes, Stack size 24 bytes, diskio.o(i.disk_read))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = disk_read &rArr; FLASH_Read_MutiData &rArr; SPI_FLASH_SendByte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_Read_MutiData
@@ -1044,7 +1045,7 @@ Global Symbols
 <LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;f_open
 </UL>
 
-<P><STRONG><a name="[d7]"></a>disk_status</STRONG> (Thumb, 38 bytes, Stack size 16 bytes, diskio.o(i.disk_status))
+<P><STRONG><a name="[d7]"></a>disk_status</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, diskio.o(i.disk_status))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = disk_status &rArr; Flash_Read_WRITE_JEDEC_ID &rArr; SPI_FLASH_ReadByte &rArr; SPI_FLASH_SendByte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Flash_Read_WRITE_JEDEC_ID
@@ -1054,7 +1055,7 @@ Global Symbols
 <LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disk_initialize
 </UL>
 
-<P><STRONG><a name="[c9]"></a>disk_write</STRONG> (Thumb, 64 bytes, Stack size 32 bytes, diskio.o(i.disk_write))
+<P><STRONG><a name="[c9]"></a>disk_write</STRONG> (Thumb, 56 bytes, Stack size 32 bytes, diskio.o(i.disk_write))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = disk_write &rArr; FLASH_Write_MutiData &rArr; Flash_Write_Data &rArr; Flash_Write_Enable &rArr; SPI_FLASH_SendByte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Flash_Erase_Sector
@@ -1199,7 +1200,7 @@ Global Symbols
 <LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;f_mkfs
 </UL>
 
-<P><STRONG><a name="[65]"></a>main</STRONG> (Thumb, 390 bytes, Stack size 0 bytes, main.o(i.main))
+<P><STRONG><a name="[65]"></a>main</STRONG> (Thumb, 338 bytes, Stack size 0 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 928<LI>Call Chain = main &rArr; f_open &rArr; dir_register &rArr; dir_find &rArr; dir_next &rArr; create_chain &rArr; put_fat &rArr; move_window &rArr; sync_window &rArr; disk_write &rArr; FLASH_Write_MutiData &rArr; Flash_Write_Data &rArr; Flash_Write_Enable &rArr; SPI_FLASH_SendByte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
@@ -1413,10 +1414,11 @@ Local Symbols
 <LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dir_alloc
 </UL>
 
-<P><STRONG><a name="[ea]"></a>find_volume</STRONG> (Thumb, 120 bytes, Stack size 40 bytes, ff.o(i.find_volume))
+<P><STRONG><a name="[ea]"></a>find_volume</STRONG> (Thumb, 134 bytes, Stack size 40 bytes, ff.o(i.find_volume))
 <BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = find_volume &rArr; check_fs &rArr; move_window &rArr; sync_window &rArr; disk_write &rArr; FLASH_Write_MutiData &rArr; Flash_Write_Data &rArr; Flash_Write_Enable &rArr; SPI_FLASH_SendByte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ld_dword
+<BR>[Calls]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ld_dword
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_fs
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mount_volume

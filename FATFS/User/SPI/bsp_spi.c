@@ -165,7 +165,7 @@ uint32_t Flash_Release_Power_Down(){
 	uint32_t rev;
 	FLASH_SPI_CSS_LOW();
 	SPI_FLASH_SendByte(FLASH_RELEASE_POWER_DOWN);
-	
+//	
 	SPI_FLASH_SendByte(FLASH_DUMMY);
 	SPI_FLASH_SendByte(FLASH_DUMMY);
 	SPI_FLASH_SendByte(FLASH_DUMMY);	

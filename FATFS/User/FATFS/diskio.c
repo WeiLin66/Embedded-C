@@ -12,8 +12,8 @@
 #include "bsp_spi.h"
 
 /* Definitions of physical drive number for each drive */
-#define DEV_MMC		  0	/* Example: Map MMC/SD card to physical drive 1 */
-#define SPI_FLASH		1	/* SPI Flash Interface */
+//#define DEV_MMC		  0	/* Example: Map MMC/SD card to physical drive 1 */
+#define SPI_FLASH		0	/* SPI Flash Interface */
 
 
 /*-----------------------------------------------------------------------*/
@@ -43,8 +43,8 @@ DSTATUS disk_status (
 
 	switch (pdrv) {
 		
-	case DEV_MMC : /* SD Card */
-	break;
+//	case DEV_MMC : /* SD Card */
+//	break;
 
 	case SPI_FLASH :
 		if(Flash_Read_WRITE_JEDEC_ID() == FLASH_ID){ /* check if Flash is alive */
@@ -71,8 +71,8 @@ DSTATUS disk_initialize (
 
 	switch (pdrv) {
 		
-	case DEV_MMC : /* SD Card */
-	break;
+//	case DEV_MMC : /* SD Card */
+//	break;
 
 	case SPI_FLASH :
 		Flash_Init();
@@ -81,7 +81,7 @@ DSTATUS disk_initialize (
 		while(t--);
 		/* Power up */
 		Flash_Release_Power_Down();
-		stat = disk_status(pdrv);
+		stat = disk_status(SPI_FLASH);
 		break;
 	}
 	return stat;
@@ -104,8 +104,8 @@ DRESULT disk_read (
 
 	switch (pdrv) {
 
-	case DEV_MMC : /* SD Card */
-	break;
+//	case DEV_MMC : /* SD Card */
+//	break;
 
 	case SPI_FLASH :
 		sector += 4096; /* Flash offset */
@@ -138,8 +138,8 @@ DRESULT disk_write (
 
 	switch (pdrv) {
 
-	case DEV_MMC : /* SD Card */
-	break;
+//	case DEV_MMC : /* SD Card */
+//	break;
 
 	case SPI_FLASH :
 		sector += 4096; /* Flash offset */
@@ -171,8 +171,8 @@ DRESULT disk_ioctl (
 
 	switch (pdrv) {
 
-	case DEV_MMC : /* SD Card */
-	break;
+//	case DEV_MMC : /* SD Card */
+//	break;
 
 	case SPI_FLASH :
 		

@@ -25,32 +25,42 @@ int main(void){
 	DEBUG_PRINT("************FATFS file system test************\n");
 	
 	/* mount file system at external flash */
-	res_flash = f_mount(&fs, "1:", 1);
+	res_flash = f_mount(&fs, "0:", 1);
+
 	DEBUG_PRINT("[FATFS] [res_flash: %d]\n", res_flash);
-	
+
 	if(res_flash == FR_NO_FILESYSTEM){
+		DEBUG_PRINT("[FATFS] [No file system!]\n");
+
 		/* disk format */
-		#if 1
-		res_flash = f_mkfs("1:", 0, work, FF_MAX_SS);
+		res_flash = f_mkfs("0:", 0, work, FF_MAX_SS);
+		
+//		DEBUG_PRINT("[FATFS] [res_flash: %d]\n", res_flash);
 		
 		if(res_flash == FR_OK){
-			DEBUG_PRINT("[FATFS] [format success!]\n");
-			res_flash = f_mount(NULL, "1:", 1);
-			res_flash = f_mount(&fs, "1:", 1);
+      /* 格式化後，先取消掛載 */
+			res_flash = f_unmount("0:");			
+      /* 重新掛載	*/			
+			res_flash = f_mount(&fs,"0:",1);
+		}else{
+//			goto err;
 		}
-		#endif
-		LED_RED;
-		DEBUG_PRINT("[FATFS] [No file system!]\n");
+		
+		DEBUG_PRINT("[FATFS] [format success!]\n");
+
 	}else if(res_flash != FR_OK){
-		DEBUG_PRINT("[FATFS] [format fail!]\n");
+//		goto err;
 	}else{
-		LED_GREEN;
 		DEBUG_PRINT("[FATFS] [already format!]\n");
 	}
 	
+	LED_GREEN;
+	
 	/* FATFS writing test */
 	DEBUG_PRINT("************FATFS file system writing test************\n");
-	res_flash = f_open(&fnew, "1:FATFS.txt", FA_WRITE|FA_CREATE_ALWAYS);
+	res_flash = f_open(&fnew, "0:FATFS.txt", FA_WRITE|FA_CREATE_ALWAYS);
+	
+	DEBUG_PRINT("[FATFS] [res_flash: %d]\n", res_flash);
 	
 	if(res_flash == FR_OK){
 		DEBUG_PRINT("[FATFS] [start writing...]\n");
@@ -60,26 +70,31 @@ int main(void){
 		}
 		f_close(&fnew);
 	}else{
-		DEBUG_PRINT("[FATFS] [error: %d]\n", res_flash);
+//		goto err;
 	}
 	
 	/* FATFS reading test */
 	DEBUG_PRINT("************FATFS file system reading test************\n");
-	res_flash = f_open(&fnew, "1:FATFS.txt", FA_READ|FA_OPEN_ALWAYS);
+	res_flash = f_open(&fnew, "0:FATFS.txt", FA_READ|FA_OPEN_ALWAYS);
 	if(res_flash == FR_OK){
 		res_flash = f_read(&fnew, data, FF_MAX_SS, &bw);
 		if(res_flash == FR_OK){
 			DEBUG_PRINT("[FATFS] [read file: FATFS.txt][content: %s]\n", data);
 		}
-		f_close(&fnew);
 	}else{
-		DEBUG_PRINT("[FATFS] [error: %d]\n", res_flash);
+//		goto err;
 	}
-	
-	f_mount(NULL, "1:", 1);
+
+	f_close(&fnew);
+	f_unmount("0:");			
 	
 	/* Infinite loop */
   while (1){
 
   }
+	
+//	err:
+//		DEBUG_PRINT("[FATFS] [fail!]\n");
+//		LED_RED;
+
 }
