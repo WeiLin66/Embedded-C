@@ -83,7 +83,7 @@ DSTATUS disk_initialize (
 		break;
 
 	case SPI_FLASH :
-		SPI_FLASH_Init();
+		Flash_Init();
 		/* delay for a short period of time */
 		t = 500;
 		while(t--);

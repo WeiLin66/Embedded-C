@@ -85,6 +85,8 @@
 #define FLASH_ERASE_SECTOR			 0x20
 #define FLASH_READ_DATA					 0x03
 #define FLASH_PAGE_PROGRAME			 0x02
+#define FLASH_4_BITS_ADDRESS		 0xB7
+#define FLASH_ADS_STATUS				 0x15
 
 #define FLASH_ID								 0xEF4019
 #define SPI_FLASH_PageSize			 256
@@ -104,8 +106,6 @@ void 														 Flash_Read_Data(uint32_t addr, uint8_t* buffer, uint32_t cou
 void 														 Flash_Write_Data(uint32_t addr, uint8_t* data, int count);
 void 														 FLASH_Read_MutiData(uint8_t* pBuffer, uint32_t ReadAddr, uint32_t NumByteToRead);
 void 														 FLASH_Write_MutiData(uint8_t* pBuffer, uint32_t WriteAddr, uint32_t NumByteToWrite);
-
-void 														 SPI_FLASH_Init(void);
 /*****************************************/
 
 #endif /* __BSP_SPI_H_ */

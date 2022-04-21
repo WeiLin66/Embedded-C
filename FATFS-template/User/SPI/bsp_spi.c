@@ -38,6 +38,39 @@ void Flash_GPIO_Init(){
 
 
 /*
+ * Flash Send & Read operation
+ */
+static uint8_t SPI_FLASH_SendByte(uint8_t byte){
+
+  while (SPI_I2S_GetFlagStatus(FLASH_SPI, SPI_I2S_FLAG_TXE) == RESET){}
+
+  SPI_I2S_SendData(FLASH_SPI, byte);
+
+  while (SPI_I2S_GetFlagStatus(FLASH_SPI, SPI_I2S_FLAG_RXNE) == RESET){}
+
+  return SPI_I2S_ReceiveData(FLASH_SPI);
+}
+
+
+/**
+ *
+ */
+static void SPI_FLASH_Mode_Init(){
+	SPI_FLASH_SendByte(FLASH_ADS_STATUS); 
+	
+	uint8_t Temp = SPI_FLASH_SendByte(FLASH_DUMMY);
+		
+	if((Temp & 0x01) == 0){
+		FLASH_SPI_CSS_LOW();
+		
+		SPI_FLASH_SendByte(FLASH_4_BITS_ADDRESS);
+		
+		FLASH_SPI_CSS_HIGH();
+	}
+}
+
+
+/*
  * SPI Init function
  */
 void Flash_SPI_Init(){
@@ -63,6 +96,8 @@ void Flash_SPI_Init(){
 	
 	/* Enable SPI Flash */
 	SPI_Cmd(FLASH_SPI, FLASH_SPI_OP);
+	
+	SPI_FLASH_Mode_Init();
 }
 
 
@@ -75,27 +110,12 @@ void Flash_Init(){
 }
 
 
-/*
- * Flash Send & Read operation
- */
-static uint8_t SPI_FLASH_SendByte(uint8_t byte){
-
-  while (SPI_I2S_GetFlagStatus(FLASH_SPI, SPI_I2S_FLAG_TXE) == RESET){}
-
-  SPI_I2S_SendData(FLASH_SPI, byte);
-
-  while (SPI_I2S_GetFlagStatus(FLASH_SPI, SPI_I2S_FLAG_RXNE) == RESET){}
-
-  return SPI_I2S_ReceiveData(FLASH_SPI);
-}
-
-
 /**
  * Read Flash data
  */
 static uint8_t SPI_FLASH_ReadByte(){
 	return SPI_FLASH_SendByte(FLASH_DUMMY);
-}	
+}
 
 
 /*
@@ -326,91 +346,5 @@ void FLASH_Write_MutiData(uint8_t* pBuffer, uint32_t WriteAddr, uint32_t NumByte
   }
 }
 	
-/***********************************************************************************/
 
-void SPI_FLASH_Init(void)
-{
-  SPI_InitTypeDef  SPI_InitStructure;
-  GPIO_InitTypeDef GPIO_InitStructure;
-  
-  /* 使能 FLASH_SPI 及GPIO 时钟 */
-  /*!< SPI_FLASH_SPI_CS_GPIO, SPI_FLASH_SPI_MOSI_GPIO, 
-       SPI_FLASH_SPI_MISO_GPIO,SPI_FLASH_SPI_SCK_GPIO 时钟使能 */
-  RCC_AHB1PeriphClockCmd (RCC_AHB1Periph_GPIOF | RCC_AHB1Periph_GPIOF|RCC_AHB1Periph_GPIOF|RCC_AHB1Periph_GPIOF, ENABLE);
-
-  /*!< SPI_FLASH_SPI 时钟使能 */
-  RCC_APB2PeriphClockCmd(RCC_APB2Periph_SPI5, ENABLE);
- 
-  //设置引脚复用
-  GPIO_PinAFConfig(GPIOF,GPIO_PinSource7,GPIO_AF_SPI5); 
-	GPIO_PinAFConfig(GPIOF,GPIO_PinSource8,GPIO_AF_SPI5); 
-	GPIO_PinAFConfig(GPIOF,GPIO_PinSource9,GPIO_AF_SPI5); 
-  
-  /*!< 配置 SPI_FLASH_SPI 引脚: SCK */
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7;
-  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
-  GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;  
-  
-  GPIO_Init(GPIOF, &GPIO_InitStructure);
-  
-	/*!< 配置 SPI_FLASH_SPI 引脚: MISO */
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;
-  GPIO_Init(GPIOF, &GPIO_InitStructure);
-  
-	/*!< 配置 SPI_FLASH_SPI 引脚: MOSI */
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;
-  GPIO_Init(GPIOF, &GPIO_InitStructure);  
-
-	/*!< 配置 SPI_FLASH_SPI 引脚: CS */
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
-  GPIO_Init(GPIOF, &GPIO_InitStructure);
-
-  /* 停止信号 FLASH: CS引脚高电平*/
-  FLASH_SPI_CSS_HIGH();
-
-  /* FLASH_SPI 模式配置 */
-  // FLASH芯片 支持SPI模式0及模式3，据此设置CPOL CPHA
-  SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
-  SPI_InitStructure.SPI_Mode = SPI_Mode_Master;
-  SPI_InitStructure.SPI_DataSize = SPI_DataSize_8b;
-  SPI_InitStructure.SPI_CPOL = SPI_CPOL_High;
-  SPI_InitStructure.SPI_CPHA = SPI_CPHA_2Edge;
-  SPI_InitStructure.SPI_NSS = SPI_NSS_Soft;
-  SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_2;
-  SPI_InitStructure.SPI_FirstBit = SPI_FirstBit_MSB;
-  SPI_InitStructure.SPI_CRCPolynomial = 7;
-  SPI_Init(FLASH_SPI, &SPI_InitStructure);
-
-  /* 使能 FLASH_SPI  */
-  SPI_Cmd(FLASH_SPI, ENABLE);
-
-	/* 使 SPI_FLASH 进入 4 字节地址模式 */
-	uint8_t Temp;
-	
-	/*选择 FLASH: CS 低 */
-	FLASH_SPI_CSS_LOW();
-	
-	/* 发送状态寄存器 3 命令 */
-	SPI_FLASH_SendByte(0x15); 
-	
-	Temp = SPI_FLASH_SendByte(FLASH_DUMMY);
-	
-	/* 停止信号 FLASH: CS 高 */
-	FLASH_SPI_CSS_HIGH();
-	
-	if((Temp&0x01) == 0)
-	{
-		/*选择 FLASH: CS 低 */
-		FLASH_SPI_CSS_LOW();
-		
-		/* 进入4字节模式 */
-		SPI_FLASH_SendByte(0xB7);
-		
-		/* 停止信号 FLASH: CS 高 */
-		FLASH_SPI_CSS_HIGH();
-	}
-}
 
