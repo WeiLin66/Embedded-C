@@ -1,8 +1,8 @@
-;******************** (C) COPYRIGHT 2015 STMicroelectronics ********************
+;******************** (C) COPYRIGHT 2016 STMicroelectronics ********************
 ;* File Name          : startup_stm32f429_439xx.s
 ;* Author             : MCD Application Team
-;* @version           : V1.5.0
-;* @date              : 06-March-2015
+;* @version           : V1.8.0
+;* @date              : 09-November-2016
 ;* Description        : STM32F429xx/439xx devices vector table for MDK-ARM toolchain. 
 ;*                      This module performs:
 ;*                      - Set the initial SP
@@ -38,7 +38,7 @@
 ;   <o> Stack Size (in Bytes) <0x0-0xFFFFFFFF:8>
 ; </h>
 
-Stack_Size      EQU     0x00000400
+Stack_Size      EQU     0x00001000
 
                 AREA    STACK, NOINIT, READWRITE, ALIGN=3
 Stack_Mem       SPACE   Stack_Size
@@ -49,7 +49,7 @@ __initial_sp
 ;   <o>  Heap Size (in Bytes) <0x0-0xFFFFFFFF:8>
 ; </h>
 
-Heap_Size       EQU     0x00000200
+Heap_Size       EQU     0x00002000
 
                 AREA    HEAP, NOINIT, READWRITE, ALIGN=3
 __heap_base

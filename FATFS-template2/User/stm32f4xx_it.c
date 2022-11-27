@@ -2,15 +2,15 @@
   ******************************************************************************
   * @file    Project/STM32F4xx_StdPeriph_Templates/stm32f4xx_it.c 
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.8.0
+  * @date    04-November-2016
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and 
   *          peripherals interrupt service routine.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2016 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -29,14 +29,12 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_it.h"
+#include "bsp_usart.h"
+#include "main.h"
 
-/** @addtogroup STM32F429I_DISCOVERY_Examples
+/** @addtogroup Template_Project
   * @{
   */
-
-/** @addtogroup FMC_SDRAM
-  * @{
-  */ 
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -67,7 +65,8 @@ void HardFault_Handler(void)
 {
   /* Go to infinite loop when Hard Fault exception occurs */
   while (1)
-  {}
+  {
+  }
 }
 
 /**
@@ -79,7 +78,8 @@ void MemManage_Handler(void)
 {
   /* Go to infinite loop when Memory Manage exception occurs */
   while (1)
-  {}
+  {
+  }
 }
 
 /**
@@ -91,7 +91,8 @@ void BusFault_Handler(void)
 {
   /* Go to infinite loop when Bus Fault exception occurs */
   while (1)
-  {}
+  {
+  }
 }
 
 /**
@@ -103,7 +104,17 @@ void UsageFault_Handler(void)
 {
   /* Go to infinite loop when Usage Fault exception occurs */
   while (1)
-  {}
+  {
+  }
+}
+
+/**
+  * @brief  This function handles SVCall exception.
+  * @param  None
+  * @retval None
+  */
+void SVC_Handler(void)
+{
 }
 
 /**
@@ -112,23 +123,17 @@ void UsageFault_Handler(void)
   * @retval None
   */
 void DebugMon_Handler(void)
-{}
+{
+}
 
 /**
-  * @brief  This function handles SVCall exception.
-  * @param  None
-  * @retval None
-  */
-void SVC_Handler(void)
-{}
-
-/**
-  * @brief  This function handles PendSV_Handler exception.
+  * @brief  This function handles PendSVC exception.
   * @param  None
   * @retval None
   */
 void PendSV_Handler(void)
-{}
+{
+}
 
 /**
   * @brief  This function handles SysTick Handler.
@@ -136,21 +141,39 @@ void PendSV_Handler(void)
   * @retval None
   */
 void SysTick_Handler(void)
-{}
+{
+//  TimingDelay_Decrement(); // not defined!
+}
+
+void USART1_IRQHandler(void){
+	if(USART_GetFlagStatus(USART1, USART_FLAG_RXNE) == SET){
+		uint16_t tmp = USART_ReceiveData(USART1);
+		
+		cmd_receive(tmp);
+		USART_SendData(USART1, tmp);
+	}
+//	while(USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);
+}
 
 /******************************************************************************/
 /*                 STM32F4xx Peripherals Interrupt Handlers                   */
 /*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */
 /*  available peripheral interrupt handler's name please refer to the startup */
-/*  file (startup_stm32f429_439xx.s).                         */
+/*  file (startup_stm32f4xx.s).                                               */
 /******************************************************************************/
 
 /**
-  * @}
-  */ 
+  * @brief  This function handles PPP interrupt request.
+  * @param  None
+  * @retval None
+  */
+/*void PPP_IRQHandler(void)
+{
+}*/
 
 /**
   * @}
   */ 
+
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
