@@ -1,4 +1,4 @@
-## embedded c STM32F429 projects
+## Embedded C STM32F429 Projects
 ### LED 閃爍
     1. 使用庫函式
     2. 流水燈閃爍: 紅 → 綠 → 藍
