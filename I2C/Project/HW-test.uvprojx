@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F429_439xx,</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\FWLIB-Template;..\Libraries\CMSIS\Include;..\Libraries\CMSIS\Device\ST\STM32F4xx\Include;..\Libraries\STM32F4xx_StdPeriph_Driver\inc;..\User;..\User\I2C;..\User\USART;..\User\LED</IncludePath>
+              <IncludePath>..\..\FWLIB-Template;..\Libraries\CMSIS\Include;..\Libraries\CMSIS\Device\ST\STM32F4xx\Include;..\Libraries\STM32F4xx_StdPeriph_Driver\inc;..\User;..\User\I2C;..\User\USART;..\User\LED;..\User\Test</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -766,6 +766,16 @@
               <FileName>bsp_led.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\LED\bsp_led.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Test</GroupName>
+          <Files>
+            <File>
+              <FileName>test_code.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\Test\test_code.c</FilePath>
             </File>
           </Files>
         </Group>

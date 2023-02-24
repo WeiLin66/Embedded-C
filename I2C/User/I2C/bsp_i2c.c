@@ -58,3 +58,72 @@ void I2C_EEPROM_Config(void){
 	/* Enable I2C */
 	I2C_EEPROM_Init();
 }
+
+/**
+ * @brief
+ *
+ */
+ErrorStatus I2C_EEPROM_Byte_Write(uint8_t* buf, uint8_t addr){
+	
+	if(buf == NULL){
+		
+		return ERROR;
+	}
+	
+	I2C_GenerateSTART(I2C_EEPROM, ENABLE);
+	
+	while(I2C_GetITStatus(I2C_EEPROM, I2C_IT_SB) == RESET);
+		
+	I2C_Send7bitAddress(I2C_EEPROM, DEVICE_ADDRESS, WRITE);
+		
+	while(I2C_CheckEvent(I2C_EEPROM, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED) == ERROR);
+	
+	I2C_SendData(I2C_EEPROM, addr);
+	
+	while(I2C_CheckEvent(I2C_EEPROM, I2C_EVENT_MASTER_BYTE_TRANSMITTED) == ERROR);
+	
+	I2C_SendData(I2C_EEPROM, *buf);
+	
+	while(I2C_CheckEvent(I2C_EEPROM, I2C_EVENT_MASTER_BYTE_TRANSMITTED) == ERROR);
+	
+	I2C_GenerateSTOP(I2C_EEPROM, ENABLE);
+	
+	return SUCCESS;
+}
+
+/**
+ * @brief
+ *
+ */
+uint8_t I2C_EEPROM_Byte_Read(uint8_t addr){
+	
+	I2C_GenerateSTART(I2C_EEPROM, ENABLE);
+	
+	while(I2C_GetITStatus(I2C_EEPROM, I2C_IT_SB) == RESET);
+	
+	I2C_Send7bitAddress(I2C_EEPROM, DEVICE_ADDRESS, WRITE);
+	
+	while(I2C_CheckEvent(I2C_EEPROM, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED) == ERROR);
+	
+	I2C_SendData(I2C_EEPROM, addr);
+	
+	while(I2C_CheckEvent(I2C_EEPROM, I2C_EVENT_MASTER_BYTE_TRANSMITTED) == ERROR);
+	
+	I2C_GenerateSTART(I2C_EEPROM, ENABLE);
+	
+	while(I2C_GetITStatus(I2C_EEPROM, I2C_IT_SB) == RESET);
+	
+	I2C_Send7bitAddress(I2C_EEPROM, DEVICE_ADDRESS, READ);
+	
+	while(I2C_CheckEvent(I2C_EEPROM, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED) == ERROR);
+	
+	I2C_AcknowledgeConfig(I2C_EEPROM, DISABLE);
+	
+	while(I2C_CheckEvent(I2C_EEPROM, I2C_EVENT_MASTER_BYTE_RECEIVED) == ERROR);
+	
+	uint8_t ret = I2C_ReceiveData(I2C_EEPROM);
+	
+	I2C_GenerateSTOP(I2C_EEPROM, ENABLE);
+	
+	return ret;
+}
