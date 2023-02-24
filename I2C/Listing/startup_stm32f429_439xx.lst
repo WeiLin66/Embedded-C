@@ -894,12 +894,12 @@ ARM Macro Assembler    Page 14
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp.sp --apcs=
 interwork --depend=..\output\startup_stm32f429_439xx.d -o..\output\startup_stm3
-2f429_439xx.o -I.\RTE\_Target_1 -IC:\Users\User\AppData\Local\Arm\Packs\Keil\ST
-M32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include -IC:\Keil_v5\ARM\C
-MSIS\Include --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SET
-A 529" --predefine="STM32F429xx SETA 1" --list=..\listing\startup_stm32f429_439
-xx.lst ..\Libraries\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm3
-2f429_439xx.s
+2f429_439xx.o -I.\RTE\_I2C-EEPROM -IC:\Users\User\AppData\Local\Arm\Packs\Keil\
+STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include -IC:\Keil_v5\ARM
+\CMSIS\Include --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION S
+ETA 529" --predefine="STM32F429xx SETA 1" --list=..\listing\startup_stm32f429_4
+39xx.lst ..\Libraries\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_st
+m32f429_439xx.s
 
 
 
