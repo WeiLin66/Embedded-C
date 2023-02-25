@@ -96,7 +96,7 @@ ErrorStatus I2C_EEPROM_Byte_Write(uint8_t* buf, uint8_t addr){
  *
  */
 uint8_t I2C_EEPROM_Byte_Read(uint8_t addr){
-	
+					
 	I2C_GenerateSTART(I2C_EEPROM, ENABLE);
 	
 //	while(I2C_GetITStatus(I2C_EEPROM, I2C_IT_SB) == RESET);
@@ -123,7 +123,9 @@ uint8_t I2C_EEPROM_Byte_Read(uint8_t addr){
 	
 	while(I2C_CheckEvent(I2C_EEPROM, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED) == ERROR);
 		
-	while(I2C_CheckEvent(I2C_EEPROM, I2C_EVENT_MASTER_BYTE_RECEIVED) == ERROR);
+//	while(I2C_CheckEvent(I2C_EEPROM, I2C_EVENT_MASTER_BYTE_RECEIVED) == ERROR);
+
+	while(I2C_GetFlagStatus(I2C_EEPROM, I2C_FLAG_RXNE) == RESET);
 
 	I2C_AcknowledgeConfig(I2C_EEPROM, DISABLE);
 

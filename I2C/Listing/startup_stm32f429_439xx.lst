@@ -492,7 +492,7 @@ ARM Macro Assembler    Page 8
   188 00000000                 IMPORT           SystemInit
   189 00000000                 IMPORT           __main
   190 00000000         
-  191 00000000 4806            LDR              R0, =SystemInit
+  191 00000000 4806    re      LDR              R0, =SystemInit
   192 00000002 4780            BLX              R0
   193 00000004 4806            LDR              R0, =__main
   194 00000006 4700            BX               R0
@@ -2378,7 +2378,22 @@ s\arm\startup_stm32f429_439xx.s
       At line 243 in file ..\Libraries\CMSIS\Device\ST\STM32F4xx\Source\Templat
 es\arm\startup_stm32f429_439xx.s
 
-103 symbols
+re 00000000
+
+Symbol: re
+   Definitions
+      At line 191 in file ..\Libraries\CMSIS\Device\ST\STM32F4xx\Source\Templat
+es\arm\startup_stm32f429_439xx.s
+   Uses
+      None
+Comment: re unused
+
+
+
+ARM Macro Assembler    Page 22 Alphabetic symbol ordering
+Relocatable symbols
+
+104 symbols
 
 
 
@@ -2443,4 +2458,4 @@ es\arm\startup_stm32f429_439xx.s
 es\arm\startup_stm32f429_439xx.s
 Comment: __main used once
 2 symbols
-454 symbols in table
+455 symbols in table
