@@ -6,8 +6,8 @@
  */
 void I2C_Single_Read_Write(void){
 	
-	uint16_t test_addr = 0x02;
-	uint8_t test_date = 0x1a;
+	uint16_t test_addr = 0x50;
+	uint8_t test_date = 0x50;
 	
 	USART_CFG();
 	
@@ -21,8 +21,9 @@ void I2C_Single_Read_Write(void){
 	
 	Usart_SendString(DEBUG_USART, "I2C Write Data\n");
 	
-	delay_ms(1000); // 1000ms
+	delay_ms(100);
 	
-	printf("I2C Read Data: 0x%X\n", I2C_EEPROM_Byte_Read(test_addr));
+	uint8_t ret = I2C_EEPROM_Byte_Read(test_addr);
 	
+	printf("I2C Read Data: 0x%X\n", ret);
 }

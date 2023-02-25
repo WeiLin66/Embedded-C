@@ -6,8 +6,9 @@
 
 // device
 /*******************************************************/
-#define DEVICE_ADDRESS						0x50
-#define DEVICE_SPEED							400
+#define DEVICE_ADDRESS						0xA0
+#define I2C_OAR										0x0A
+#define DEVICE_SPEED							400000
 
 // Pin define
 /*******************************************************/
@@ -26,7 +27,7 @@
 #define	I2C_EEPROM_SDA_AF					GPIO_AF_I2C1
 #define	I2C_EEPROM_SDA_SOURCE			GPIO_PinSource7
 
-typedef enum {WRITE = I2C_Direction_Transmitter, READ = !I2C_Direction_Receiver} I2C_READ_WRITE;
+typedef enum {WRITE = I2C_Direction_Transmitter, READ = I2C_Direction_Receiver} I2C_READ_WRITE;
 
 void I2C_EEPROM_Config(void);
 ErrorStatus I2C_EEPROM_Byte_Write(uint8_t* buf, uint8_t addr);
