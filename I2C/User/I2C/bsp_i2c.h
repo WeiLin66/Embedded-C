@@ -9,7 +9,7 @@
 #define DEVICE_ADDRESS						0xA0
 #define I2C_OAR										0x0A
 #define DEVICE_SPEED							400000
-#define I2C_SLEEP
+//#define I2C_SLEEP
 
 // Pin define
 /*******************************************************/
