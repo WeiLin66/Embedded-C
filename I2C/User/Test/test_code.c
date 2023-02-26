@@ -89,10 +89,9 @@ static void I2C_EEPROM_Wait(void){
  * @brief
  *
  */
-void I2C_Single_Read_Write(void){
+void I2C_Read_Write_Test(void){
 	
 	uint16_t test_addr = 0x50;
-	uint8_t test_date = 0x50;
 	
 	USART_CFG();
 	
@@ -101,6 +100,8 @@ void I2C_Single_Read_Write(void){
 	I2C_EEPROM_Config();
 	
 	Usart_SendString(DEBUG_USART, "I2C Configuration OK!\n");
+#ifdef I2C_SINGLE_READ_WRITE
+	uint8_t test_date = 0x50;
 	
 	I2C_EEPROM_Byte_Write(&test_date, test_addr);
 	
@@ -111,4 +112,18 @@ void I2C_Single_Read_Write(void){
 	uint8_t ret = I2C_EEPROM_Byte_Read(test_addr);
 	
 	printf("I2C Read Data: 0x%X\n", ret);
+#elif defined(I2C_PAGE_READ_WRITE)
+	uint8_t test_data[8] = {0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8};
+	
+	I2C_EEPROM_Page_Write(test_data, test_addr, PAGE_SIZE);
+	
+	Usart_SendString(DEBUG_USART, "I2C Write Data\n");
+	
+	I2C_EEPROM_Wait();
+	
+#else
+
+
+#endif
+
 }

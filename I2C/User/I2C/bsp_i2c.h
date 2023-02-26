@@ -9,6 +9,7 @@
 #define DEVICE_ADDRESS						0xA0
 #define I2C_OAR										0x0A
 #define DEVICE_SPEED							400000
+#define PAGE_SIZE									8
 //#define I2C_SLEEP
 
 // Pin define
@@ -31,7 +32,10 @@
 typedef enum {WRITE = I2C_Direction_Transmitter, READ = I2C_Direction_Receiver} I2C_READ_WRITE;
 
 void I2C_EEPROM_Config(void);
+
 ErrorStatus I2C_EEPROM_Byte_Write(uint8_t* buf, uint8_t addr);
 uint8_t I2C_EEPROM_Byte_Read(uint8_t addr);
+
+ErrorStatus I2C_EEPROM_Page_Write(uint8_t* buf, uint8_t addr, uint8_t numbers);
 
 #endif /* __BSP_I2C_H_ */
