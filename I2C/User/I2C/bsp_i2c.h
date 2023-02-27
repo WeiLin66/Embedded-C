@@ -9,7 +9,11 @@
 #define DEVICE_ADDRESS						0xA0
 #define I2C_OAR										0x0A
 #define DEVICE_SPEED							400000
-#define PAGE_SIZE									8
+#define PAGE_SIZE									0x8
+#define ROM_SIZE									0x100
+#define DEFAULT_I2C_TIMEOUT_LIMIT	0x2000
+#define I2C_TIMEOUT_RESET(x)			(x) = DEFAULT_I2C_TIMEOUT_LIMIT
+#define TIMEOUT_TRIGGER()					I2C_Timeout_Trigger((uint8_t*)__FILE__, (uint8_t*)__func__, __LINE__)
 //#define I2C_SLEEP
 
 // Pin define
@@ -30,12 +34,16 @@
 #define	I2C_EEPROM_SDA_SOURCE			GPIO_PinSource7
 
 typedef enum {WRITE = I2C_Direction_Transmitter, READ = I2C_Direction_Receiver} I2C_READ_WRITE;
+typedef enum {UNINIT_HANDLER=0, XTIMEOUT, TIMEOUT}TIMEOUT_STATUS;
+typedef void (*i2c_error_handler)(uint8_t*, uint8_t*, uint32_t);
 
 void I2C_EEPROM_Config(void);
-
+ErrorStatus I2C_EEPROM_Wait(void);
+void I2C_EEPROM_Error_CB(i2c_error_handler cbfunc);
 ErrorStatus I2C_EEPROM_Byte_Write(uint8_t* buf, uint8_t addr);
 uint8_t I2C_EEPROM_Byte_Read(uint8_t addr);
-
 ErrorStatus I2C_EEPROM_Page_Write(uint8_t* buf, uint8_t addr, uint8_t numbers);
+ErrorStatus I2C_EEPROM_Sequential_Read(uint8_t* buf, uint8_t addr, uint16_t numbers);
+ErrorStatus I2C_EEPROM_Sequential_Write(uint8_t* buf, uint8_t addr, uint16_t numbers);
 
 #endif /* __BSP_I2C_H_ */

@@ -7,8 +7,8 @@
 #include "bsp_misc.h"
 
 //#define	I2C_SINGLE_READ_WRITE	
-#define	I2C_PAGE_READ_WRITE	
-//#define	I2C_BUFFER_READ_WRITE	
+//#define	I2C_PAGE_READ_WRITE	
+#define	I2C_BUFFER_READ_WRITE	
 
 void cmd_receive(uint8_t tmp);
 void I2C_Read_Write_Test(void);

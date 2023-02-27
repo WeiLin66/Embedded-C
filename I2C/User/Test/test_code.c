@@ -66,24 +66,14 @@ void cmd_receive(uint8_t tmp){
 	}
 }
 
-static void I2C_EEPROM_Wait(void){
+static void _wait(void){
 	
 #ifdef I2C_SLEEP
 	delay_ms(1);
 #else
-	do{
-		
-		I2C_GenerateSTART(I2C_EEPROM, ENABLE);
-		I2C_Send7bitAddress(I2C_EEPROM, DEVICE_ADDRESS, WRITE);
-	}while(I2C_GetFlagStatus(I2C_EEPROM, I2C_FLAG_ADDR) == RESET);
-	
-	I2C_ClearFlag(I2C_EEPROM, I2C_FLAG_AF);
-	I2C_GenerateSTOP(I2C_EEPROM, ENABLE);
-	
-	while(I2C_GetFlagStatus(I2C_EEPROM, I2C_FLAG_BUSY) == SET);
+	I2C_EEPROM_Wait();
 #endif
 }
-
 
 /**
  * @brief
@@ -91,39 +81,74 @@ static void I2C_EEPROM_Wait(void){
  */
 void I2C_Read_Write_Test(void){
 	
-	uint16_t test_addr = 0x50;
+	uint16_t test_addr = 0x00;
 	
 	USART_CFG();
 	
-	Usart_SendString(DEBUG_USART, "This is a I2C single byte read & write example code!\n");
-	
 	I2C_EEPROM_Config();
-	
+		
 	Usart_SendString(DEBUG_USART, "I2C Configuration OK!\n");
 #ifdef I2C_SINGLE_READ_WRITE
-	uint8_t test_date = 0x50;
+	uint8_t test_date = 0xAA;
 	
 	I2C_EEPROM_Byte_Write(&test_date, test_addr);
 	
 	Usart_SendString(DEBUG_USART, "I2C Write Data\n");
 	
-	I2C_EEPROM_Wait();
+	_wait();
 	
 	uint8_t ret = I2C_EEPROM_Byte_Read(test_addr);
 	
 	printf("I2C Read Data: 0x%X\n", ret);
 #elif defined(I2C_PAGE_READ_WRITE)
-	uint8_t test_data[8] = {0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8};
+	uint8_t test_data[PAGE_SIZE] = {0x0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7};
+	uint8_t test_buf[PAGE_SIZE];
 	
 	I2C_EEPROM_Page_Write(test_data, test_addr, PAGE_SIZE);
 	
 	Usart_SendString(DEBUG_USART, "I2C Write Data\n");
 	
-	I2C_EEPROM_Wait();
+	_wait();
 	
+	I2C_EEPROM_Sequential_Read(test_buf, test_addr, ROM_SIZE);
+	
+	for(int i=0; i<ROM_SIZE; i++){
+		
+		delay_ms(5);
+		printf("I2C Sequential Read: 0x%x\n", test_buf[i]);
+	}
 #else
-
-
+	uint8_t test_data[ROM_SIZE] = {0x0};
+	uint8_t test_buf[ROM_SIZE];
+	
+	for(int i=0x00; i<=0xff; i++){
+		
+		test_data[i] = i;
+	}
+	
+	if(I2C_EEPROM_Sequential_Write(test_data, test_addr, 8) == ERROR){
+		
+		printf("I2C_EEPROM_Sequential_Write failed.\n");
+		return;
+	}
+	
+	Usart_SendString(DEBUG_USART, "I2C Write Data\n");
+	
+	_wait();
+	
+	if(I2C_EEPROM_Sequential_Read(test_buf, test_addr, ROM_SIZE) == ERROR){
+		
+		printf("I2C_EEPROM_Sequential_Read failed.\n");
+		return;
+	}
+	
+	for(int i=0; i<ROM_SIZE; i++){
+		
+		delay_ms(5);
+		printf("I2C Sequential Read: 0x%x\n", test_buf[i]);
+	}
+	
+	printf("I2C Read finish.\n");
 #endif
 
 }
