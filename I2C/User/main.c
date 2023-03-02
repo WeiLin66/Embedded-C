@@ -3,7 +3,7 @@
 
 int main(void){  
      
-	I2C_Read_Write_Test();
+	I2C_4bytes_Read_Write_Test();
 	
   /* Infinite loop */
   while (1)

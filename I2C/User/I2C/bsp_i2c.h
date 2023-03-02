@@ -15,6 +15,7 @@
 #define I2C_TIMEOUT_RESET(x)			(x) = DEFAULT_I2C_TIMEOUT_LIMIT
 #define TIMEOUT_TRIGGER()					I2C_Timeout_Trigger((uint8_t*)__FILE__, (uint8_t*)__func__, __LINE__)
 //#define I2C_SLEEP
+#define DWORD											sizeof(uint32_t)
 
 // Pin define
 /*******************************************************/
@@ -45,5 +46,9 @@ uint8_t I2C_EEPROM_Byte_Read(uint8_t addr);
 ErrorStatus I2C_EEPROM_Page_Write(uint8_t* buf, uint8_t addr, uint8_t numbers);
 ErrorStatus I2C_EEPROM_Sequential_Read(uint8_t* buf, uint8_t addr, uint16_t numbers);
 ErrorStatus I2C_EEPROM_Sequential_Write(uint8_t* buf, uint8_t addr, uint16_t numbers);
+ErrorStatus I2C_EEPROM_4Byte_Write(void* buf, uint8_t addr);
+ErrorStatus I2C_EEPROM_4Byte_Read(void* buf, uint8_t addr);
+ErrorStatus I2C_EEPROM_4Byte_Sequential_Write(void* buf, uint8_t addr, uint16_t numbers);
+ErrorStatus I2C_EEPROM_4Byte_Sequential_Read(void* buf, uint8_t addr, uint16_t numbers);
 
 #endif /* __BSP_I2C_H_ */

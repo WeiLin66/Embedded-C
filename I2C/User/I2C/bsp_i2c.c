@@ -5,27 +5,19 @@ i2c_error_handler i2c_err = NULL;
 
 __INLINE static uint8_t I2C_Timeout_Trigger(uint8_t*, uint8_t*, uint32_t);
 
-/**
- * @brief funciton for GPIO Initialization
- *
- */
 static void GPIO_I2C_EEPROM_Init(GPIO_TypeDef* GPIO, uint16_t PIN){
 	
 	GPIO_InitTypeDef GPIO_Initial_pars;
 	
 	GPIO_Initial_pars.GPIO_Pin = PIN;
 	GPIO_Initial_pars.GPIO_Mode = GPIO_Mode_AF;
-	GPIO_Initial_pars.GPIO_OType = GPIO_OType_OD; // high-resistence
+	GPIO_Initial_pars.GPIO_OType = GPIO_OType_OD; // high-resistence and low
 	GPIO_Initial_pars.GPIO_PuPd = GPIO_PuPd_NOPULL;
 	GPIO_Initial_pars.GPIO_Speed = GPIO_Speed_50MHz;
 	
 	GPIO_Init(GPIO, &GPIO_Initial_pars);
 }
 
-/**
- * @brief
- *
- */
 static void I2C_EEPROM_Init(){
 	
 	I2C_InitTypeDef I2C_EEPROM_Init_Structure;
@@ -42,10 +34,6 @@ static void I2C_EEPROM_Init(){
 	I2C_AcknowledgeConfig(I2C_EEPROM, ENABLE);
 }
 
-/**
- * @brief
- *
- */
 __INLINE static uint8_t I2C_Timeout_Trigger(uint8_t* filename, uint8_t* func, uint32_t line){
 	
 	if(i2c_err == NULL){
@@ -65,10 +53,6 @@ __INLINE static uint8_t I2C_Timeout_Trigger(uint8_t* filename, uint8_t* func, ui
 	return XTIMEOUT;
 }
 
-/**
- * @brief
- *
- */
 static void I2C_EEPROM_Error_Handler(uint8_t* filename, uint8_t* function, uint32_t line){
 	
 	if(!filename || !function){
@@ -80,10 +64,6 @@ static void I2C_EEPROM_Error_Handler(uint8_t* filename, uint8_t* function, uint3
 				filename, function, line);
 }
 
-/**
- * @brief
- *
- */
 void I2C_EEPROM_Config(void){
 
 	/* Enable peripheral clock */
@@ -108,10 +88,6 @@ void I2C_EEPROM_Config(void){
 	I2C_EEPROM_Error_CB(i2c_err);
 }
 
-/**
- * @brief
- *
- */
 ErrorStatus I2C_EEPROM_Wait(void){
 
 	do{
@@ -133,10 +109,6 @@ ErrorStatus I2C_EEPROM_Wait(void){
 	return SUCCESS;
 }
 
-/**
- * @brief
- *
- */
 void I2C_EEPROM_Error_CB(i2c_error_handler cbfunc){
 	
 	if(cbfunc == NULL){
@@ -148,10 +120,6 @@ void I2C_EEPROM_Error_CB(i2c_error_handler cbfunc){
 	i2c_err = cbfunc;
 }
 
-/**
- * @brief
- *
- */
 ErrorStatus I2C_EEPROM_Byte_Write(uint8_t* buf, uint8_t addr){
 	
 	if(buf == NULL){
@@ -206,10 +174,6 @@ ErrorStatus I2C_EEPROM_Byte_Write(uint8_t* buf, uint8_t addr){
 	return SUCCESS;
 }
 
-/**
- * @brief
- *
- */
 uint8_t I2C_EEPROM_Byte_Read(uint8_t addr){
 	
 	while(I2C_GetFlagStatus(I2C_EEPROM, I2C_FLAG_BUSY) == SET){
@@ -291,10 +255,6 @@ uint8_t I2C_EEPROM_Byte_Read(uint8_t addr){
 	return ret;
 }
 
-/**
- * @brief
- *
- */
 ErrorStatus I2C_EEPROM_Page_Write(uint8_t* buf, uint8_t addr, uint8_t numbers){
 	
 	if(buf == NULL){
@@ -357,10 +317,6 @@ ErrorStatus I2C_EEPROM_Page_Write(uint8_t* buf, uint8_t addr, uint8_t numbers){
 	return SUCCESS;
 }
 
-/**
- * @brief
- *
- */
 ErrorStatus I2C_EEPROM_Sequential_Read(uint8_t* buf, uint8_t addr, uint16_t numbers){
 	
 	if(numbers > ROM_SIZE){
@@ -461,10 +417,6 @@ ErrorStatus I2C_EEPROM_Sequential_Read(uint8_t* buf, uint8_t addr, uint16_t numb
 	return SUCCESS;
 }
 
-/**
- * @brief
- *
- */
 ErrorStatus I2C_EEPROM_Sequential_Write(uint8_t* buf, uint8_t addr, uint16_t numbers){
 	
 	if(buf == NULL){
@@ -506,4 +458,58 @@ ErrorStatus I2C_EEPROM_Sequential_Write(uint8_t* buf, uint8_t addr, uint16_t num
 	}
 	
 	return SUCCESS;
+}
+
+ErrorStatus I2C_EEPROM_4Byte_Write(void* buf, uint8_t addr){
+	
+	if(buf == NULL){
+		
+		return ERROR;
+	}
+	
+	return I2C_EEPROM_Page_Write(buf, addr, DWORD);
+}
+
+ErrorStatus I2C_EEPROM_4Byte_Read(void* buf, uint8_t addr){
+	
+	if(buf == NULL){
+		
+		return ERROR;
+	}
+	
+	return I2C_EEPROM_Sequential_Read(buf, addr, DWORD);
+}
+
+ErrorStatus I2C_EEPROM_4Byte_Sequential_Write(void* buf, uint8_t addr, uint16_t numbers){
+	
+	if(buf == NULL){
+		
+		return ERROR;
+	}
+	
+	numbers *= DWORD;
+	
+	if(numbers > ROM_SIZE){
+		
+			return ERROR;
+	}
+	
+	return I2C_EEPROM_Sequential_Write(buf, addr, numbers);
+}
+
+ErrorStatus I2C_EEPROM_4Byte_Sequential_Read(void* buf, uint8_t addr, uint16_t numbers){
+	
+	if(buf == NULL){
+		
+		return ERROR;
+	}
+	
+	numbers *= DWORD;
+	
+	if(numbers > ROM_SIZE){
+		
+			return ERROR;
+	}
+	
+	return I2C_EEPROM_Sequential_Write(buf, addr, numbers);
 }

@@ -12,5 +12,6 @@
 
 void cmd_receive(uint8_t tmp);
 void I2C_Read_Write_Test(void);
+void I2C_4bytes_Read_Write_Test(void);
 
 #endif

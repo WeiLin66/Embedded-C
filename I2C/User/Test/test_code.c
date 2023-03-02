@@ -75,10 +75,6 @@ static void _wait(void){
 #endif
 }
 
-/**
- * @brief
- *
- */
 void I2C_Read_Write_Test(void){
 	
 	uint16_t test_addr = 0x00;
@@ -151,4 +147,39 @@ void I2C_Read_Write_Test(void){
 	printf("I2C Read finish.\n");
 #endif
 
+}
+
+void I2C_4bytes_Read_Write_Test(void){
+	
+	uint16_t test_addr = 0x0000;
+	float test_val_f[64];
+	float test_buf_f[64];
+	
+	for(int i=0; i<64; i++){
+		
+		test_buf_f[i] = 3.14 + i;
+	}
+	
+	USART_CFG();
+	
+	I2C_EEPROM_Config();
+		
+	Usart_SendString(DEBUG_USART, "I2C Configuration OK!\n");
+	
+	I2C_EEPROM_4Byte_Sequential_Write(test_val_f, test_addr, 64);
+	
+	Usart_SendString(DEBUG_USART, "I2C Write Data\n");
+	
+	_wait();	
+	
+	if(I2C_EEPROM_4Byte_Sequential_Read(test_buf_f, test_addr, 64) == ERROR){
+		
+		printf("I2C_EEPROM_4Byte_Read failed.\n");
+		return;
+	}
+	
+	for(int i=0; i<64; i++){
+		
+		printf("I2C 4 Bytes Read[%d]: %.5f\n", i, test_buf_f[i]);
+	}	
 }
